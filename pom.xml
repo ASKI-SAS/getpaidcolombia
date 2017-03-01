@@ -18,11 +18,9 @@
             </plugin>
         </plugins>
     </build>
-
     <properties>
         <spring.version>3.2.16.RELEASE</spring.version>
     </properties>
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

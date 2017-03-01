@@ -1,11 +1,7 @@
 package com.ektec.od;
 
-import com.ektec.utilidades.Utilidades;
-
 import java.io.Serializable;
-import java.sql.Date;
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Locale;
 

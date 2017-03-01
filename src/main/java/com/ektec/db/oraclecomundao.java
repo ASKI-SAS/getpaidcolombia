@@ -1,7 +1,6 @@
 package com.ektec.db;
 
 import com.ektec.utilidades.Utilidades;
-import oracle.jdbc.oracore.Util;
 import oracle.jdbc.pool.OracleDataSource;
 
 import javax.sql.DataSource;
@@ -9,7 +8,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 /**
