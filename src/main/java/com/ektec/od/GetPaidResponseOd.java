@@ -1,9 +1,6 @@
 package com.ektec.od;
 
-import com.sun.org.apache.xml.internal.utils.StringVector;
-
 import java.io.Serializable;
-import java.sql.Date;
 
 /**
  * Created by mserrano on 23/04/2016.
