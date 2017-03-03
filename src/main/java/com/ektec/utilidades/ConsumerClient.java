@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class ConsumerClient {
     private static Logger LOGGER = Logger.getLogger(ConsumerClient.class.getName());
 
-    public static Object  consume (String url, Object request, Class cls){
+    public static Object consume(String url, Object request, Class cls) {
         final String origen = "ConsumerClient.consume";
         long time = 0;
         ResponseEntity response = null;
@@ -29,8 +29,8 @@ public class ConsumerClient {
 
         try {
 
-            if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + ConsumerClient.class + " | " + origen);
+            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + ConsumerClient.class + " | " + origen);
             time = System.currentTimeMillis();
 
             List<MediaType> acceptableMediaTypes = new ArrayList<>();
@@ -40,12 +40,12 @@ public class ConsumerClient {
             headers.setContentType(MediaType.APPLICATION_JSON);
             String auth = Utilidades.getPropiedadConfig("servicio.userpass");
             byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName(Utilidades.getPropiedadConfig("servicio.charset"))));
-            String authHeader = "Basic " + new String( encodedAuth );
-            headers.set( "Authorization", authHeader );
+            String authHeader = "Basic " + new String(encodedAuth);
+            headers.set("Authorization", authHeader);
 
 
-            if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + ConsumerClient.class + " | " + "Petición: url= " +url +" - "+ new Gson().toJson(request));
+            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + ConsumerClient.class + " | " + "Petición: url= " + url + " - " + new Gson().toJson(request));
             HttpEntity<String> entity = new HttpEntity<>(new Gson().toJson(request), headers);
 
 
@@ -53,13 +53,13 @@ public class ConsumerClient {
             response = restTemplate.postForEntity(url, entity, String.class);
 
             Gson gson = new Gson();
-            objectResponse = gson.fromJson((String) response.getBody(),GetPaidResponseOd.class);
+            objectResponse = gson.fromJson((String) response.getBody(), GetPaidResponseOd.class);
 
             time = System.currentTimeMillis() - time;
-            if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + ConsumerClient.class + " | " + origen + " | " + time);
+            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + ConsumerClient.class + " | " + origen + " | " + time);
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             LOGGER.severe(ResourceBundle.getBundle("log").getString("log.error") + ex.getMessage());
             GetPaidRequestOd getPaidRequestOd = (GetPaidRequestOd) request;
             GetPaidResponseOd GetPaidResponseOd = new GetPaidResponseOd();

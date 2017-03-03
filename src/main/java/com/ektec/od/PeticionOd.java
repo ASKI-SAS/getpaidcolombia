@@ -70,25 +70,23 @@ public class PeticionOd implements Serializable {
     }
 
     public String getImporteTransaccion() {
-        Locale locale  = new Locale("en", "US");
+        Locale locale = new Locale("en", "US");
         String pattern = "#.00";
 
         DecimalFormat decimalFormat = (DecimalFormat)
                 NumberFormat.getNumberInstance(locale);
         decimalFormat.applyPattern(pattern);
-        String format = decimalFormat.format(importeTransaccion);
-        return format;
+        return decimalFormat.format(importeTransaccion);
     }
 
     public void setImporteTransaccion(Double importeTransaccion) {
-        Locale locale  = new Locale("en", "US");
+        Locale locale = new Locale("en", "US");
         String pattern = "#.00";
 
         DecimalFormat decimalFormat = (DecimalFormat)
                 NumberFormat.getNumberInstance(locale);
         decimalFormat.applyPattern(pattern);
-        String format = decimalFormat.format(importeTransaccion);
-        this.importeTransaccion = format;
+        this.importeTransaccion = decimalFormat.format(importeTransaccion);
     }
 
     public String getTerminalId() {
@@ -122,7 +120,6 @@ public class PeticionOd implements Serializable {
     public void setTlv(String tlv) {
         this.tlv = tlv;
     }
-
 
 
 }

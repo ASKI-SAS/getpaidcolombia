@@ -1,0 +1,18 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Bases de Datos -->
+	<bean id="communDao" class="com.ektec.db.oraclecomundao"/>
+
+	<bean id="getPaid" scope="prototype" class="com.ektec.negocio.GetPaid" parent="communDao"/>
+
+	<bean id="httpComponentsClientHttpRequestFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory"/>
+
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<constructor-arg ref="httpComponentsClientHttpRequestFactory"/>
+	</bean>
+
+</beans>

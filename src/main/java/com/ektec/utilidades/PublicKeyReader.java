@@ -13,10 +13,10 @@ public class PublicKeyReader {
             throws Exception {
 
 
-        File f = new File(Utilidades.getPropiedadConfig("seguridad.ruta"));
+        File f = new File(Utilidades.getPropiedadConfig("certificado.ruta"));
         FileInputStream fis = new FileInputStream(f);
         DataInputStream dis = new DataInputStream(fis);
-        byte[] keyBytes = new byte[(int)f.length()];
+        byte[] keyBytes = new byte[(int) f.length()];
         dis.readFully(keyBytes);
         dis.close();
 

@@ -33,22 +33,48 @@ public class GetPaid extends oraclecomundao {
 
 /*Metodo que desencola*/
 
+    public static String encrypt(String text, PublicKey key) {
+
+        byte[] cipherText = null;
+
+        StringBuilder sb = new StringBuilder();
+
+        BASE64Encoder encoder = new BASE64Encoder();
+
+        try {
+
+            final Cipher cipher = Cipher.getInstance("RSA");
+
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+
+            cipherText = cipher.doFinal(text.getBytes());
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return encoder.encode(cipherText).replaceAll("\n", "");
+
+    }
+
+    /*Arma el objeto de la cola*/
+
     public GetPaidResponseOd getPaid() throws Exception {
         final String origen = "GetPaid.getPaid";
         Connection connection = null;
         CallableStatement statement = null;
         ResultSet result = null;
-        long time = 0;
-        int rows = -1;
         GetPaidResponseOd GetPaidResponseOd = null;
-        String idServicio =null;
+        String idServicio = null;
         GetPaidRequestOd getPaidRequestOd = null;
 
         try {
-            if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen);
+            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen);
 
-            time = System.currentTimeMillis();
+            long time = System.currentTimeMillis();
 
             connection = getConnection();
 
@@ -82,32 +108,32 @@ public class GetPaid extends oraclecomundao {
 
 
                 if (!GetPaidResponseOd.getEstado().equalsIgnoreCase("0")) {
-                    if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                    LOGGER.info("____________________________________________________________________________________");
+                    if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                        LOGGER.info("____________________________________________________________________________________");
                     throw (new Exception("Mensaje de la Base de datos: " + GetPaidResponseOd.getEstado(), null));
                 } else {
-                    if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                    LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | 0 respuesta de bd exitosa");
-                    if (!idServicio.equalsIgnoreCase("X")){
+                    if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                        LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | 0 respuesta de bd exitosa");
+                    if (!idServicio.equalsIgnoreCase("X")) {
                         getPaidRequestOd = this.GetPaidObject(statement);
                         /*Validacion del estado*/
                         GetPaidResponseOd = this.getServiceExterno(getPaidRequestOd);
                         GetPaidResponseOd.setFolioTransaccion(getPaidRequestOd.getPeticion().getFolioTransaccion());
                         GetPaidResponseOd.setFechaHoraSolicitud(getPaidRequestOd.getSeguridad().getFechaHora());
                         GetPaidResponseOd = this.setResponse(GetPaidResponseOd);
-                        if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                        LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | ID de sevicio procesado: "+getPaidRequestOd.getPeticion().getIdServicio());
-                    }else{
-                        if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                        LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | No hay solicitudes en la cola");
+                        if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | ID de sevicio procesado: " + getPaidRequestOd.getPeticion().getIdServicio());
+                    } else {
+                        if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | No hay solicitudes en la cola");
                     }
 
-                    if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                    LOGGER.info("____________________________________________________________________________________");
+                    if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                        LOGGER.info("____________________________________________________________________________________");
                 }
 
-                if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | 0 respuesta de bd exitosa");
+                if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                    LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | 0 respuesta de bd exitosa");
 
             } else {
                 LOGGER.severe(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | No hay conexion con la Base de datos");
@@ -115,8 +141,8 @@ public class GetPaid extends oraclecomundao {
 
 
             time = System.currentTimeMillis() - time;
-            if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + time);
+            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + time);
 
         } catch (Exception ex) {
             LOGGER.severe(ResourceBundle.getBundle("log").getString("log.error") + ex.getMessage());
@@ -127,18 +153,16 @@ public class GetPaid extends oraclecomundao {
         return (GetPaidResponseOd);
     }
 
-    /*Arma el objeto de la cola*/
-
+    /*Llama al consumo del servicio del csa*/
 
     public GetPaidRequestOd GetPaidObject(CallableStatement statement) {
         final String origen = "GetPaid.GetPaidObject";
-        long time = 0;
         GetPaidRequestOd getPaidRequestOd = null;
         try {
 
-            if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen);
-            time = System.currentTimeMillis();
+            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen);
+            long time = System.currentTimeMillis();
 
             getPaidRequestOd = new GetPaidRequestOd();
             getPaidRequestOd.setSeguridad(new SeguridadOd());
@@ -148,7 +172,7 @@ public class GetPaid extends oraclecomundao {
             String reportDate = df.format(today);
             getPaidRequestOd.getSeguridad().setFechaHora(reportDate);
             getPaidRequestOd.getSeguridad().setUsuario(Utilidades.getPropiedadConfig("seguridad.usuario"));
-            String textencrypt=GetPaid.encrypt(getPaidRequestOd.getSeguridad().getUsuario()+"::"+Utilidades.getPropiedadConfig("seguridad.key")+"::"+getPaidRequestOd.getSeguridad().getFechaHora(),new PublicKeyReader().get());
+            String textencrypt = GetPaid.encrypt(getPaidRequestOd.getSeguridad().getUsuario() + "::" + Utilidades.getPropiedadConfig("seguridad.key") + "::" + getPaidRequestOd.getSeguridad().getFechaHora(), PublicKeyReader.get());
             getPaidRequestOd.getSeguridad().setKey(textencrypt);
             getPaidRequestOd.setPeticion(new PeticionOd());
             getPaidRequestOd.getPeticion().setIdServicio(statement.getString(1));
@@ -166,14 +190,14 @@ public class GetPaid extends oraclecomundao {
             getPaidRequestOd.getPeticion().getTerminalLocation().setTerminalOwner(statement.getString(10));
             getPaidRequestOd.getPeticion().getTerminalLocation().setTerminalCity(statement.getString(11));
             getPaidRequestOd.getPeticion().getTerminalLocation().setTerminalState(statement.getString(12));
-            getPaidRequestOd.getPeticion().getTerminalLocation().setTerminalCountry(statement.getString(13));            ;
+            getPaidRequestOd.getPeticion().getTerminalLocation().setTerminalCountry(statement.getString(13));
             getPaidRequestOd.getPeticion().setAdditionalData(new AdditionalDataOd());
             getPaidRequestOd.getPeticion().getAdditionalData().setRetailerId(statement.getLong(14));
 
 
             time = System.currentTimeMillis() - time;
-            if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + time);
+            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + time);
 
         } catch (Exception e) {
             LOGGER.severe(ResourceBundle.getBundle("log").getString("log.error") + e.getMessage());
@@ -183,34 +207,32 @@ public class GetPaid extends oraclecomundao {
 
     }
 
-    /*Llama al consumo del servicio del csa*/
-
-    public GetPaidResponseOd getServiceExterno(GetPaidRequestOd GetPaidRequestOd) {
+    private GetPaidResponseOd getServiceExterno(GetPaidRequestOd GetPaidRequestOd) {
         final String origen = "GetPaid.getServiceExterno";
         long time = 0;
         GetPaidResponseOd getPaidResponseOd = null;
 
         try {
 
-            if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen);
+            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen);
 
             time = System.currentTimeMillis();
             ResponseEntity entity;
 
             if (GetPaidRequestOd.getPeticion().getTlv() != null) {
                 getPaidResponseOd = (GetPaidResponseOd) ConsumerClient.consume(Utilidades.getPropiedadConfig("servicio.url.getpaidChip"), GetPaidRequestOd, GetPaidResponseOd.class);
-                if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + " Servicio por CHIP - "+new Gson().toJson(getPaidResponseOd));
+                if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                    LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + " Servicio por CHIP - " + new Gson().toJson(getPaidResponseOd));
             } else {
                 getPaidResponseOd = (GetPaidResponseOd) ConsumerClient.consume(Utilidades.getPropiedadConfig("servicio.url.getpaidBanda"), GetPaidRequestOd, GetPaidResponseOd.class);
-                if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + " Servicio por BANDA - "+new Gson().toJson(getPaidResponseOd));
+                if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                    LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + " Servicio por BANDA - " + new Gson().toJson(getPaidResponseOd));
             }
 
             time = System.currentTimeMillis() - time;
-            if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + time);
+            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + time);
 
         } catch (Exception e) {
             LOGGER.severe(ResourceBundle.getBundle("log").getString("log.error") + e.getMessage());
@@ -220,57 +242,22 @@ public class GetPaid extends oraclecomundao {
 
     }
 
-
-
-
-    public static String encrypt(String text, PublicKey key) {
-
-        byte[] cipherText = null;
-
-        StringBuilder sb = new StringBuilder();
-
-        BASE64Encoder encoder = new BASE64Encoder();
-
-        try {
-
-            final Cipher cipher = Cipher.getInstance("RSA");
-
-            cipher.init(Cipher.ENCRYPT_MODE, key);
-
-            cipherText = cipher.doFinal(text.getBytes());
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
-        return encoder.encode(cipherText).replaceAll("\n", "");
-
-    }
-
-
-
-
     public GetPaidResponseOd setResponse(GetPaidResponseOd getPaidResponseOd) throws Exception {
         final String origen = "GetPaid.setResponse";
         Connection connection = null;
         CallableStatement statement = null;
         ResultSet result = null;
-        long time = 0;
-        int rows = -1;
         GetPaidResponseOd getPaidResponseOd1 = null;
 
         try {
-            if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen);
-            time = System.currentTimeMillis();
+            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen);
+            long time = System.currentTimeMillis();
 
             connection = getConnection();
 
             if (connection != null) {
                 statement = connection.prepareCall("{call SP_WS_UPDENTRIES(?,?,?,?,?,?,?,?,?)}");
-
 
 
                 if (getPaidResponseOd.getFolioTransaccion() != null)
@@ -305,13 +292,13 @@ public class GetPaid extends oraclecomundao {
 
                 if (getPaidResponseOd.getFechaHora() != null) {
                     statement.setString(7, getPaidResponseOd.getFechaHora());
-                }else
+                } else
                     statement.setNull(7, Types.NULL);
 
 
                 if (getPaidResponseOd.getFechaHoraSolicitud() != null) {
                     statement.setString(8, getPaidResponseOd.getFechaHoraSolicitud());
-                }else
+                } else
                     statement.setNull(8, Types.NULL);
 
                 statement.registerOutParameter(9, Types.NUMERIC);
@@ -323,18 +310,18 @@ public class GetPaid extends oraclecomundao {
 
 
                 if (!getPaidResponseOd1.getEstado().equalsIgnoreCase("0")) {
-                    if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                    LOGGER.info("____________________________________________________________________________________");
+                    if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                        LOGGER.info("____________________________________________________________________________________");
                     throw (new Exception("Mensaje de la Base de datos: " + getPaidResponseOd1.getEstado(), null));
                 } else {
-                    if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                    LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | 0 respuesta de bd exitosa");
-                    if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                    LOGGER.info("____________________________________________________________________________________");
+                    if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                        LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | 0 respuesta de bd exitosa");
+                    if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                        LOGGER.info("____________________________________________________________________________________");
                 }
 
-                if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | 0 respuesta de bd exitosa");
+                if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                    LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | 0 respuesta de bd exitosa");
 
             } else {
                 LOGGER.severe(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | No hay conexion con la Base de datos");
@@ -342,8 +329,8 @@ public class GetPaid extends oraclecomundao {
 
 
             time = System.currentTimeMillis() - time;
-            if(Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-            LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + time);
+            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
+                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + time);
 
         } catch (Exception ex) {
             LOGGER.severe(ResourceBundle.getBundle("log").getString("log.error") + ex.getMessage());

@@ -17,13 +17,13 @@ public class Utilidades {
         String propiedad = null;
         try {
 
-            input = new FileInputStream(new File("").getAbsolutePath()+"/configuracion.properties");
+            input = new FileInputStream(new File("").getAbsolutePath() + "/config.properties");
 
             // load a properties file
             prop.load(input);
 
             // get the property value and print it out
-            propiedad =prop.getProperty(ppropiedad);
+            propiedad = prop.getProperty(ppropiedad);
 
 
         } catch (IOException ex) {
