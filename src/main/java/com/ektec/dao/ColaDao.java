@@ -5,7 +5,6 @@ import com.ektec.utilidades.PublicKeyReader;
 import com.ektec.utilidades.Utilidades;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.sql.Types;
@@ -23,7 +22,6 @@ import java.util.Date;
  * @since 1.0
  */
 @Repository("colaDao")
-@Transactional
 public class ColaDao extends OracleDao implements IColaDao {
     private static Logger LOGGER = Logger.getLogger(ColaDao.class.getName());
 
@@ -33,6 +31,7 @@ public class ColaDao extends OracleDao implements IColaDao {
 
     @Override
     public Object encolar(Object obj) throws BDException {
+        GetPaidResponseOd respuesta = null;
         try {
             if (!(obj instanceof GetPaidResponseOd))
                 throw new BDException("No se pueden enconlar este tipo de objeto");
@@ -40,6 +39,7 @@ public class ColaDao extends OracleDao implements IColaDao {
 
             // Conectar con la BD
             connect();
+
             // Ejecutar la actualización
             callableStatement = connection.prepareCall("{CALL sp_ws_updentries(?,?,?,?,?,?,?,?,?)}");
             callableStatement.registerOutParameter(9, Types.NUMERIC);
@@ -87,71 +87,74 @@ public class ColaDao extends OracleDao implements IColaDao {
             callableStatement.executeUpdate();
 
             // Validar y devolver la respuesta
-            GetPaidResponseOd respuesta = new GetPaidResponseOd();
+            respuesta = new GetPaidResponseOd();
             respuesta.setEstado(callableStatement.getString(9));
             if (!respuesta.getEstado().equalsIgnoreCase("0"))
-                throw new BDException("Mensaje de la Base de datos: " + respuesta.getEstado());
-
-            // Desconectar de la BD
-            close();
-
-            return respuesta;
+                throw new BDException("Mensaje de la base de datos: " + respuesta.getEstado());
 
         } catch (SQLException sqle) {
-            LOGGER.error(sqle.getMessage());
             throw new BDException(sqle.getMessage());
+
+        } finally {
+            // Desconectar de la BD
+            close();
         }
+
+        return respuesta;
     }
 
     @Override
     public Object desencolar() throws BDException {
-        Object resultado = null;
+        Object resultado;
         try {
             // Conectar con la BD
             connect();
-            if (connection != null) {
-                // Ejecutar la consulta
-                callableStatement = connection.prepareCall("{CALL pkg_ws_quepay.sp_ws_dequeue(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-                callableStatement.registerOutParameter(1, Types.VARCHAR);
-                callableStatement.registerOutParameter(2, Types.VARCHAR);
-                callableStatement.registerOutParameter(3, Types.DATE);
-                callableStatement.registerOutParameter(4, Types.NUMERIC);
-                callableStatement.registerOutParameter(5, Types.VARCHAR);
-                callableStatement.registerOutParameter(6, Types.VARCHAR);
-                callableStatement.registerOutParameter(7, Types.VARCHAR);
-                callableStatement.registerOutParameter(8, Types.VARCHAR);
-                callableStatement.registerOutParameter(9, Types.VARCHAR);
-                callableStatement.registerOutParameter(10, Types.VARCHAR);
-                callableStatement.registerOutParameter(11, Types.VARCHAR);
-                callableStatement.registerOutParameter(12, Types.VARCHAR);
-                callableStatement.registerOutParameter(13, Types.VARCHAR);
-                callableStatement.registerOutParameter(14, Types.NUMERIC);
-                callableStatement.registerOutParameter(15, Types.NUMERIC);
-                callableStatement.registerOutParameter(16, Types.NUMERIC);
-                resultSet = callableStatement.executeQuery();
 
-                // Obtener el resultado
-                GetPaidResponseOd res = new GetPaidResponseOd();
-                res.setEstado(callableStatement.getString(16));
+            // Ejecutar la consulta
+            callableStatement = connection.prepareCall("{CALL pkg_ws_quepay.sp_ws_dequeue(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            callableStatement.registerOutParameter(1, Types.VARCHAR);
+            callableStatement.registerOutParameter(2, Types.VARCHAR);
+            callableStatement.registerOutParameter(3, Types.DATE);
+            callableStatement.registerOutParameter(4, Types.NUMERIC);
+            callableStatement.registerOutParameter(5, Types.VARCHAR);
+            callableStatement.registerOutParameter(6, Types.VARCHAR);
+            callableStatement.registerOutParameter(7, Types.VARCHAR);
+            callableStatement.registerOutParameter(8, Types.VARCHAR);
+            callableStatement.registerOutParameter(9, Types.VARCHAR);
+            callableStatement.registerOutParameter(10, Types.VARCHAR);
+            callableStatement.registerOutParameter(11, Types.VARCHAR);
+            callableStatement.registerOutParameter(12, Types.VARCHAR);
+            callableStatement.registerOutParameter(13, Types.VARCHAR);
+            callableStatement.registerOutParameter(14, Types.NUMERIC);
+            callableStatement.registerOutParameter(15, Types.NUMERIC);
+            callableStatement.registerOutParameter(16, Types.NUMERIC);
+            resultSet = callableStatement.executeQuery();
 
-                // Validar si hay respuesta de la cola
-                if (!res.getEstado().equalsIgnoreCase("0"))
-                    throw new BDException("Mensaje de la base de datos: " + res.getEstado());
+            // Obtener el resultado
+            GetPaidResponseOd res = new GetPaidResponseOd();
+            res.setEstado(callableStatement.getString(16));
 
-                // Verificar si hay elementos en la cola
-                String idServicio = callableStatement.getString(1);
-                if (idServicio.equalsIgnoreCase("X"))
-                    throw new BDException("No hay solicitudes en cola...");
+            // Validar si hay respuesta de la cola
+            if (!res.getEstado().equalsIgnoreCase("0"))
+                throw new BDException("Mensaje de la base de datos: " + res.getEstado());
 
-                // Obtener los datos del Objeto desde la BD
-                resultado = this.getPaidObject();
-
-                // Desconectar de la BD
-                close();
+            // Verificar si hay elementos en la cola
+            String idServicio = callableStatement.getString(1);
+            if (idServicio.equalsIgnoreCase("X")) {
+                if (LOGGER.isDebugEnabled())
+                    LOGGER.debug("No hay solicitudes en cola...");
+                return null;
             }
+
+            // Obtener los datos del Objeto desde la BD
+            resultado = this.getPaidObject();
+
         } catch (SQLException sqle) {
-            LOGGER.error(sqle.getMessage());
             throw new BDException(sqle.getMessage());
+
+        } finally {
+            // Desconectar de la BD
+            close();
         }
 
         return resultado;

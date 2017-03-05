@@ -27,81 +27,90 @@ public class GetPaid {
     public GetPaid() {
     }
 
-    public void setColaDao(IColaDao colaDao) {
-        this.colaDao = colaDao;
-    }
 
     public GetPaidResponseOd getPaid() throws Exception {
         GetPaidResponseOd respuesta = null;
         GetPaidRequestOd getPaidRequestOd;
         try {
             // Desencolar un cobro
-            getPaidRequestOd = (GetPaidRequestOd) this.colaDao.desencolar();
+            Object obj = this.colaDao.desencolar();
+            if (obj != null) {
+                getPaidRequestOd = (GetPaidRequestOd) obj;
 
-            // Envío a cobrar
-            respuesta = this.getServiceExterno(getPaidRequestOd);
+                // Envío a cobrar
+                respuesta = this.getServiceExterno(getPaidRequestOd);
 
-            // Actualizo y guardo la respuesta
-            respuesta.setFolioTransaccion(getPaidRequestOd.getPeticion().getFolioTransaccion());
-            respuesta.setFechaHoraSolicitud(getPaidRequestOd.getSeguridad().getFechaHora());
-            respuesta = this.setResponse(respuesta);
+                // Actualizo y guardo la respuesta
+                respuesta.setFolioTransaccion(getPaidRequestOd.getPeticion().getFolioTransaccion());
+                respuesta.setFechaHoraSolicitud(getPaidRequestOd.getSeguridad().getFechaHora());
+                respuesta = this.setResponse(respuesta);
 
-            if (LOGGER.isDebugEnabled())
-                LOGGER.debug("\tServicio procesado satisfactoriamente. ID Servicio: " + getPaidRequestOd.getPeticion().getIdServicio());
+                if (LOGGER.isDebugEnabled())
+                    LOGGER.debug("\tServicio procesado satisfactoriamente. ID Servicio: " + getPaidRequestOd.getPeticion().getIdServicio());
+            }
 
         } catch (Exception ex) {
             LOGGER.error(ex.getMessage());
         }
 
-        return (respuesta);
+        return respuesta;
     }
 
     private GetPaidResponseOd getServiceExterno(GetPaidRequestOd GetPaidRequestOd) {
-        final String origen = "GetPaid.getServiceExterno";
         long time;
         GetPaidResponseOd getPaidResponseOd = null;
 
         try {
             ConsumerClient consumer = new ConsumerClient();
 
-            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen);
+            if (LOGGER.isDebugEnabled())
+                LOGGER.debug("**** Consumo WS: INICIADO...");
 
             time = System.currentTimeMillis();
             if (GetPaidRequestOd.getPeticion().getTlv() != null) {
                 getPaidResponseOd = (GetPaidResponseOd) consumer.consume(Utilidades.getPropiedadConfig("servicio.url.getPaidChip"), GetPaidRequestOd, GetPaidResponseOd.class);
-                if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                    LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + " Servicio por CHIP - " + new Gson().toJson(getPaidResponseOd));
+
+                if (LOGGER.isDebugEnabled())
+                    LOGGER.debug("\tServicio por CHIP - " + new Gson().toJson(getPaidResponseOd));
+
             } else {
                 getPaidResponseOd = (GetPaidResponseOd) consumer.consume(Utilidades.getPropiedadConfig("servicio.url.getPaidBanda"), GetPaidRequestOd, GetPaidResponseOd.class);
-                if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                    LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + " Servicio por BANDA - " + new Gson().toJson(getPaidResponseOd));
+
+                if (LOGGER.isDebugEnabled())
+                    LOGGER.debug("\tServicio por BANDA - " + new Gson().toJson(getPaidResponseOd));
             }
 
-            time = System.currentTimeMillis() - time;
-            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + origen + " | " + time);
+            if (LOGGER.isDebugEnabled()) {
+                time = System.currentTimeMillis() - time;
+                LOGGER.debug("**** Consumo WS: FINALIZADO. (" + time + " milisegundos)");
+            }
 
         } catch (Exception e) {
             LOGGER.error(ResourceBundle.getBundle("log").getString("log.error") + e.getMessage());
         }
 
         return getPaidResponseOd;
-
     }
 
     private GetPaidResponseOd setResponse(GetPaidResponseOd getPaidResponseOd) throws Exception {
-        GetPaidResponseOd getPaidResponseOd1 = null;
+        GetPaidResponseOd respuesta = null;
 
         try {
             // Encolar la respuesta
-            getPaidResponseOd1 = (GetPaidResponseOd) this.colaDao.encolar(getPaidResponseOd);
+            respuesta = (GetPaidResponseOd) this.colaDao.encolar(getPaidResponseOd);
 
         } catch (Exception ex) {
             LOGGER.error(ex.getMessage());
         }
 
-        return (getPaidResponseOd1);
+        return respuesta;
     }
 
+    public IColaDao getColaDao() {
+        return colaDao;
+    }
+
+    public void setColaDao(IColaDao colaDao) {
+        this.colaDao = colaDao;
+    }
 }

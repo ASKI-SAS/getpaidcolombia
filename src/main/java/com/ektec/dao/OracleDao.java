@@ -3,9 +3,11 @@ package com.ektec.dao;
 import com.ektec.utilidades.Utilidades;
 import oracle.jdbc.pool.OracleDataSource;
 import org.apache.log4j.Logger;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /*
  * Copyright @2017. ASKI, S.A.S. Todos los derechos reservados.
@@ -15,12 +17,9 @@ import java.sql.*;
  * @version 1, 2013-09-26
  * @since 1.0
  */
-@Transactional
 public class OracleDao implements IBaseDao {
     private static Logger LOGGER = Logger.getLogger(OracleDao.class.toString());
     protected Connection connection;
-    protected Statement statement;
-    protected PreparedStatement preparedStatement;
     protected CallableStatement callableStatement;
     protected ResultSet resultSet;
     private OracleDataSource dataSource;
@@ -32,7 +31,6 @@ public class OracleDao implements IBaseDao {
     /**
      * Obtiene una conexión a la base de datos
      *
-     * @return La conexión a la base de datos
      * @throws Exception
      */
     @Override
@@ -55,8 +53,6 @@ public class OracleDao implements IBaseDao {
     public void close() throws BDException {
         try {
             if (resultSet != null) resultSet.close();
-            if (statement != null) statement.close();
-            if (preparedStatement != null) preparedStatement.close();
             if (connection != null) connection.close();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
