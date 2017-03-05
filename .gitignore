@@ -1,0 +1,7 @@
+*.xml
+out/artifacts/GetPaidJob/GetPaidJob.jar
+*.class
+target/classes/META-INF/MANIFEST.MF
+*.iml
+.idea/.name
+*.der
