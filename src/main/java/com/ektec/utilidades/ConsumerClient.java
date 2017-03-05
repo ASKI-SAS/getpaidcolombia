@@ -1,11 +1,12 @@
 package com.ektec.utilidades;
 
 
-import com.ektec.negocio.GetPaid;
 import com.ektec.od.GetPaidRequestOd;
 import com.ektec.od.GetPaidResponseOd;
+import com.ektec.utilidades.ws.IConsumerWS;
 import com.google.gson.Gson;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -15,69 +16,78 @@ import org.springframework.web.client.RestTemplate;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
-public class ConsumerClient {
+/*
+ * Copyright @2017. ASKI, S.A.S. Todos los derechos reservados.
+ *
+ * @author SERRANO, Manuel
+ * @author RIVAS, Ronel
+ * @version 1, 2017-03-04
+ * @since 1.0
+ */
+public class ConsumerClient implements IConsumerWS {
     private static Logger LOGGER = Logger.getLogger(ConsumerClient.class.getName());
 
-    public static Object consume(String url, Object request, Class cls) {
-        final String origen = "ConsumerClient.consume";
+    // Consumir un
+    @Override
+    public Object consume(String url, Object request, Class cls) {
         long time = 0;
-        ResponseEntity response = null;
-        Object objectResponse = null;
+        ResponseEntity response;
+        Object objectResponse;
 
         try {
+            // Traza de inicio
+            if (LOGGER.isDebugEnabled()) {
+                time = System.currentTimeMillis();
+                LOGGER.debug("Consumo WS: INICIADO");
+            }
 
-            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + ConsumerClient.class + " | " + origen);
-            time = System.currentTimeMillis();
-
+            // Establecer parámetros de seguridad para el consumo
             List<MediaType> acceptableMediaTypes = new ArrayList<>();
             acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
             HttpHeaders headers = new HttpHeaders();
             headers.setAccept(acceptableMediaTypes);
             headers.setContentType(MediaType.APPLICATION_JSON);
+
+            // Establecer parámetros de Autorización de consumo
             String auth = Utilidades.getPropiedadConfig("servicio.userpass");
             byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName(Utilidades.getPropiedadConfig("servicio.charset"))));
             String authHeader = "Basic " + new String(encodedAuth);
             headers.set("Authorization", authHeader);
 
+            // Establecer los parametros de la peticion
+            String paramPeticion = new Gson().toJson(request);
+            if (LOGGER.isDebugEnabled())
+                LOGGER.info("WS URL: " + url + " - Parámetros:" + new Gson().toJson(request));
 
-            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + ConsumerClient.class + " | " + "Petición: url= " + url + " - " + new Gson().toJson(request));
-            HttpEntity<String> entity = new HttpEntity<>(new Gson().toJson(request), headers);
-
-
+            // Consumir el WS
+            HttpEntity<String> entity = new HttpEntity<>(paramPeticion, headers);
             RestTemplate restTemplate = new RestTemplate();
             response = restTemplate.postForEntity(url, entity, String.class);
+            objectResponse = new Gson().fromJson((String) response.getBody(), GetPaidResponseOd.class);
 
-            Gson gson = new Gson();
-            objectResponse = gson.fromJson((String) response.getBody(), GetPaidResponseOd.class);
-
-            time = System.currentTimeMillis() - time;
-            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + ConsumerClient.class + " | " + origen + " | " + time);
+            // Traza del tiempo total de ejecución
+            if (LOGGER.isDebugEnabled()) {
+                time = System.currentTimeMillis() - time;
+                LOGGER.debug("Consumo WS: FINALIZADO. (" + time + " mils)");
+            }
 
         } catch (Exception ex) {
-            LOGGER.severe(ResourceBundle.getBundle("log").getString("log.error") + ex.getMessage());
-            GetPaidRequestOd getPaidRequestOd = (GetPaidRequestOd) request;
-            GetPaidResponseOd GetPaidResponseOd = new GetPaidResponseOd();
-            GetPaidResponseOd.setFolioTransaccion(getPaidRequestOd.getPeticion().getFolioTransaccion());
-            GetPaidResponseOd.setFechaHoraSolicitud(getPaidRequestOd.getSeguridad().getFechaHora());
-            GetPaidResponseOd.setIdRespuesta("999");
-            GetPaidResponseOd.setDescripcion("CSA No Disponible - EKTEC");
-            GetPaid getPaid = new GetPaid();
-            try {
-                GetPaidResponseOd = getPaid.setResponse(GetPaidResponseOd);
-            } catch (Exception ex2) {
-                LOGGER.severe(ResourceBundle.getBundle("log").getString("log.error") + ex2.getMessage());
-            }
-        }
+            LOGGER.error(ex.getMessage(), ex);
 
+            // Establecer respuesta fallida: SERVICIO NO DISPONIBLE
+            GetPaidRequestOd requestOrigen = (GetPaidRequestOd) request;
+            GetPaidResponseOd servicioNoDisponible = new GetPaidResponseOd();
+            servicioNoDisponible.setFolioTransaccion(requestOrigen.getPeticion().getFolioTransaccion());
+            servicioNoDisponible.setFechaHoraSolicitud(requestOrigen.getSeguridad().getFechaHora());
+            servicioNoDisponible.setIdRespuesta("999");
+            servicioNoDisponible.setDescripcion("CSA No Disponible - EKTEC");
+
+            // Encolar la respuesta fallida
+            objectResponse = servicioNoDisponible;
+        }
 
         return objectResponse;
     }
-
 
 }

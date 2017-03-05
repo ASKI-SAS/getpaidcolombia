@@ -1,65 +1,56 @@
 package com.ektec;
 
 import com.ektec.negocio.GetPaid;
-import com.ektec.utilidades.Utilidades;
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.Serializable;
-import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
+/*
+ * Copyright @2017. ASKI, S.A.S. Todos los derechos reservados.
+ *
+ * @author SERRANO, Manuel
+ * @author RIVAS, Ronel
+ * @version 1, 2017-03-04
+ * @since 1.0
+ */
 public class Main implements Serializable {
     private static Logger LOGGER = Logger.getLogger(GetPaid.class.getName());
-    private GetPaid getPaid;
 
+    private GetPaid pasarela;
+
+    public Main() {
+        // Obtener la instancia del ConsumidorWS
+        ApplicationContext context = new ClassPathXmlApplicationContext("appContext.xml");
+        pasarela = (GetPaid) context.getBean("getPaid");
+
+        // Informar estado de los LOGS
+        if (LOGGER.isDebugEnabled() || LOGGER.isInfoEnabled() || LOGGER.isTraceEnabled())
+            LOGGER.debug("LOGS HABILITADOS");
+        else
+            LOGGER.debug("LOGS INHABILITADOS: sólo se verán los ERROR o SEVERE");
+    }
+
+    // Programa principal
     public static void main(String[] args) {
-        final String origen = "GetPaid.main";
-        long time = 0;
-
         try {
+            if (LOGGER.isDebugEnabled())
+                LOGGER.debug("**** Proceso: INICIADO...");
 
-
-            if (!Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                LOGGER.info("LOS LOG ESTAN DESACTIVADOS SOLO SE VERAN LOS ERROR O SEVERE");
-            else
-                LOGGER.info("LOS LOG ESTAN ACTIVADOS SOLO SE VERAN LOS ERROR O SEVERE");
-
-            if (Utilidades.getPropiedadConfig("LOG_ENABLED").equalsIgnoreCase("true"))
-                LOGGER.info(ResourceBundle.getBundle("log").getString("log.servicios") + GetPaid.class + " | " + "INICIANDO PROCESO");
-
-
-            Main m = new Main();
-
-            m.consumir();
-
+            // Invocar el consumo del WS
+            Main aplicacion = new Main();
+            while (true)
+                aplicacion.pasarela.getPaid();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.fatal(e.getMessage(), e);
+
+            if (LOGGER.isDebugEnabled())
+                LOGGER.debug("**** Proceso: FINALIZADO...");
+
+            System.exit(0);
         }
     }
 
-
-    private void consumir() {
-        try {
-            ApplicationContext context = new ClassPathXmlApplicationContext("appContext.xml");
-            setGetPaid((GetPaid) context.getBean("getPaid"));
-
-            while (true) {
-                getGetPaid().getPaid();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    private GetPaid getGetPaid() {
-        return getPaid;
-    }
-
-    private void setGetPaid(GetPaid getPaid) {
-        this.getPaid = getPaid;
-    }
 }

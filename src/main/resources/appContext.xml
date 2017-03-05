@@ -5,9 +5,11 @@
             http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- Bases de Datos -->
-	<bean id="communDao" class="com.ektec.db.oraclecomundao"/>
+	<bean id="communDao" class="com.ektec.dao.OracleDao"/>
 
-	<bean id="getPaid" scope="prototype" class="com.ektec.negocio.GetPaid" parent="communDao"/>
+	<bean id="colaDao" class="com.ektec.dao.ColaDao" parent="communDao"/>
+
+	<bean id="getPaid" scope="prototype" class="com.ektec.negocio.GetPaid"/>
 
 	<bean id="httpComponentsClientHttpRequestFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory"/>
 
