@@ -140,7 +140,7 @@ public class ColaDao extends OracleDao implements IColaDao {
 
             // Verificar si hay elementos en la cola
             String idServicio = callableStatement.getString(1);
-            if (idServicio.equalsIgnoreCase("X")) {
+            if ((idServicio == null) || (idServicio.equalsIgnoreCase("X"))) {
                 if (LOGGER.isDebugEnabled())
                     LOGGER.debug("No hay solicitudes en cola...");
                 return null;

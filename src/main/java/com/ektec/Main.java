@@ -35,11 +35,12 @@ public class Main implements Serializable {
     // Programa principal
     public static void main(String[] args) {
         try {
+            // Invocar el consumo del WS
+            Main aplicacion = new Main();
+
             if (LOGGER.isDebugEnabled())
                 LOGGER.debug("**** Proceso: INICIADO...");
 
-            // Invocar el consumo del WS
-            Main aplicacion = new Main();
             while (true)
                 aplicacion.pasarela.getPaid();
 

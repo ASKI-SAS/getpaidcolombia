@@ -9,7 +9,9 @@
 
 	<bean id="colaDao" class="com.ektec.dao.ColaDao" parent="communDao"/>
 
-	<bean id="getPaid" scope="prototype" class="com.ektec.negocio.GetPaid"/>
+	<bean id="getPaid" scope="prototype" class="com.ektec.negocio.GetPaid">
+		<property name="colaDao" ref="colaDao" />
+	</bean>
 
 	<bean id="httpComponentsClientHttpRequestFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory"/>
 
