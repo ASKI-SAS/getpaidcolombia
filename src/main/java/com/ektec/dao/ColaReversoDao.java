@@ -16,16 +16,15 @@ import java.util.Date;
 /*
  * Copyright @2017. ASKI, S.A.S. Todos los derechos reservados.
  *
- * @author SERRANO, Manuel
  * @author RIVAS, Ronel
  * @version 1, 2013-09-26
  * @since 1.0
  */
-@Repository("colaDao")
-public class ColaDao extends OracleDao implements IColaDao {
-    private static Logger LOGGER = Logger.getLogger(ColaDao.class.getName());
+@Repository("colaReversoDao")
+public class ColaReversoDao extends OracleDao implements IColaDao {
+    private static Logger LOGGER = Logger.getLogger(ColaReversoDao.class.getName());
 
-    public ColaDao() throws BDException {
+    public ColaReversoDao() throws BDException {
         super();
     }
 
@@ -167,7 +166,7 @@ public class ColaDao extends OracleDao implements IColaDao {
             getPaidRequestOd.setSeguridad(new SeguridadOd());
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             DateFormat dfd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            java.util.Date today = Calendar.getInstance().getTime();
+            Date today = Calendar.getInstance().getTime();
             String reportDate = df.format(today);
             getPaidRequestOd.getSeguridad().setFechaHora(reportDate);
             getPaidRequestOd.getSeguridad().setUsuario(Utilidades.getPropiedadConfig("seguridad.usuario"));

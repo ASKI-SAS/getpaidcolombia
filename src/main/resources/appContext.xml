@@ -1,22 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="
-            http://www.springframework.org/schema/beans
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- Bases de Datos -->
-	<bean id="communDao" class="com.ektec.dao.OracleDao"/>
+    <bean id="oracleDao" class="com.ektec.dao.OracleDao"/>
 
-	<bean id="colaDao" class="com.ektec.dao.ColaDao" parent="communDao"/>
+    <!-- Colas -->
+    <bean id="colaCobroDao" class="com.ektec.dao.ColaCobroDao" parent="oracleDao"/>
 
-	<bean id="getPaid" scope="prototype" class="com.ektec.negocio.GetPaid">
-		<property name="colaDao" ref="colaDao" />
-	</bean>
+    <bean id="colaReversoDao" class="com.ektec.dao.ColaReversoDao" parent="oracleDao"/>
 
-	<bean id="httpComponentsClientHttpRequestFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory"/>
+    <!-- Servicio -->
+    <bean id="pasarelaService" scope="prototype" class="com.ektec.negocio.PasarelaService">
+        <property name="colaCobroDao" ref="colaCobroDao"/>
+        <property name="colaReversoDao" ref="colaReversoDao"/>
+    </bean>
 
-	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
-		<constructor-arg ref="httpComponentsClientHttpRequestFactory"/>
-	</bean>
+    <!--<bean id="httpComponentsClientHttpRequestFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory"/>
+
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg ref="httpComponentsClientHttpRequestFactory"/>
+    </bean>-->
 
 </beans>

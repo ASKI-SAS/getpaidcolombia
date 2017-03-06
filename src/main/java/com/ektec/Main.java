@@ -1,6 +1,7 @@
 package com.ektec;
 
-import com.ektec.negocio.GetPaid;
+import com.ektec.negocio.PasarelaService;
+import com.ektec.utilidades.Utilidades;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -16,14 +17,14 @@ import java.io.Serializable;
  * @since 1.0
  */
 public class Main implements Serializable {
-    private static Logger LOGGER = Logger.getLogger(GetPaid.class.getName());
+    private static Logger LOGGER = Logger.getLogger(PasarelaService.class.getName());
 
-    private GetPaid pasarela;
+    private PasarelaService pasarelaService;
 
     public Main() {
-        // Obtener la instancia del ConsumidorWS
+        // Levantar el contexto de Spring
         ApplicationContext context = new ClassPathXmlApplicationContext("appContext.xml");
-        pasarela = (GetPaid) context.getBean("getPaid");
+        pasarelaService = (PasarelaService) context.getBean("pasarelaService");
 
         // Informar estado de los LOGS
         if (LOGGER.isDebugEnabled() || LOGGER.isInfoEnabled() || LOGGER.isTraceEnabled())
@@ -35,14 +36,20 @@ public class Main implements Serializable {
     // Programa principal
     public static void main(String[] args) {
         try {
-            // Invocar el consumo del WS
-            Main aplicacion = new Main();
-
             if (LOGGER.isDebugEnabled())
                 LOGGER.debug("**** Proceso: INICIADO...");
 
-            while (true)
-                aplicacion.pasarela.getPaid();
+            // Invocar el consumo del WS
+            Main aplicacion = new Main();
+            boolean reversar = Utilidades.getPropiedadConfig("servicio.reverse.habilitado").equalsIgnoreCase("true");
+            while (true) {
+                // Cobrar servicio
+                aplicacion.pasarelaService.getPaid();
+
+                // Reversar Servicios Incompletos
+                if(reversar)
+                    aplicacion.pasarelaService.getReverso();
+            }
 
         } catch (Exception e) {
             LOGGER.fatal(e.getMessage(), e);

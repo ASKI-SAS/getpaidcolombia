@@ -3,6 +3,7 @@ package com.ektec.dao;
 import com.ektec.utilidades.Utilidades;
 import oracle.jdbc.pool.OracleDataSource;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -17,21 +18,23 @@ import java.sql.SQLException;
  * @version 1, 2013-09-26
  * @since 1.0
  */
+@Repository("oracleDao")
 public class OracleDao implements IBaseDao {
     private static Logger LOGGER = Logger.getLogger(OracleDao.class.toString());
+
     protected Connection connection;
     protected CallableStatement callableStatement;
     protected ResultSet resultSet;
     private OracleDataSource dataSource;
 
-    public OracleDao() throws BDException {
-        this.connect();
+    public OracleDao()  {
+        super();
     }
 
     /**
      * Obtiene una conexión a la base de datos
      *
-     * @throws Exception
+     * @throws BDException
      */
     @Override
     public void connect() throws BDException {
@@ -49,6 +52,11 @@ public class OracleDao implements IBaseDao {
         }
     }
 
+    /**
+     * Cierra una conexión a la base de datos y libera los recursos
+     *
+     * @throws BDException
+     */
     @Override
     public void close() throws BDException {
         try {
@@ -59,4 +67,5 @@ public class OracleDao implements IBaseDao {
             throw new BDException(e.getMessage());
         }
     }
+
 }

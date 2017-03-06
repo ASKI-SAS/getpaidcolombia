@@ -25,10 +25,10 @@ import java.util.List;
  * @version 1, 2017-03-04
  * @since 1.0
  */
-public class ConsumerClient implements IConsumerWS {
-    private static Logger LOGGER = Logger.getLogger(ConsumerClient.class.getName());
+public class ConsumerClientRest implements IConsumerWS {
+    private static Logger LOGGER = Logger.getLogger(ConsumerClientRest.class.getName());
 
-    // Consumir un
+    // Consumir un Web Service REST
     @Override
     public Object consume(String url, Object request, Class cls) {
         long time = 0;
