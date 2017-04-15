@@ -212,10 +212,9 @@ public class ColaCobroDao extends OracleDao implements IColaDao {
     }
 
     // Obtiene el objeto solicitud desde la BD
-    private TipoRespuesta getPaidRedeban() {
+    private TipoSolicitudCompra getPaidRedeban() {
         TipoSolicitudCompra request = new TipoSolicitudCompra();
-        TipoRespuesta respuesta = new TipoRespuesta();
-// PARTE DE LA SOLICITUD
+// PARTES DE LA SOLICITUD
         TipoCabeceraSolicitud cabecera = new TipoCabeceraSolicitud();
         TipoIdPersona idPersona = new TipoIdPersona();
         TipoInfoMedioPago infoMedioPago = new TipoInfoMedioPago();
@@ -262,20 +261,16 @@ public class ColaCobroDao extends OracleDao implements IColaDao {
             tipoMontoDetallado.setMonto(new BigDecimal("17851.00"));
             tipoMontoDetallado.setTipoMontoDetallado(TipoTipoMontoDetallado.BASE_DEVOLUCION_IVA);
             infoCompra.getMontoDetallado().add(tipoMontoDetallado);
-    // SOLICITUD
+
             request.setCabeceraSolicitud(cabecera);
             request.setIdPersona(idPersona);
             request.setInfoCompra(infoCompra);
             request.setInfoMedioPago(infoMedioPago);
-    // CONSUMO DEL SERVICIO
-            respuesta= ClientWs.compraProcesar(request);
-
-            System.out.print(respuesta.getInfoRespuesta().getEstado());
         } catch(Exception e){
             System.out.println("err" + e.getMessage());
             e.printStackTrace();
         }
-        return respuesta;
+        return request;
     }
 
 
