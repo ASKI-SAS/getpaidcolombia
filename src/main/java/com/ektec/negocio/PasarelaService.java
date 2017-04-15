@@ -9,6 +9,7 @@ import com.ektec.utilidades.ws.SoapConsumer;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import redeban.modelo.TipoRespuesta;
 import redeban.modelo.TipoSolicitudCompra;
 
 import java.util.ResourceBundle;
@@ -33,8 +34,8 @@ public class PasarelaService {
     }
 
     // Procesar Cobro
-    public GetPaidResponseOd getPaid() throws Exception {
-        GetPaidResponseOd respuesta = null;
+    public void getPaid() throws Exception {
+        TipoRespuesta respuesta = null;
         TipoSolicitudCompra getPaidRequestOd;
         try {
             // Desencolar un cobro
@@ -48,7 +49,7 @@ public class PasarelaService {
                 // Actualizo y guardo la respuesta
                 //respuesta.setFolioTransaccion(getPaidRequestOd.getPeticion().getFolioTransaccion());
                 //respuesta.setFechaHoraSolicitud(getPaidRequestOd.getSeguridad().getFechaHora());
-                respuesta = (GetPaidResponseOd) this.colaCobroDao.encolar(respuesta);
+                this.colaCobroDao.encolar(respuesta);
 
                 if (LOGGER.isDebugEnabled())
                     LOGGER.debug("\tServicio de cobro procesado satisfactoriamente. ID Servicio: " + getPaidRequestOd.getInfoCompra().getReferencia());
@@ -58,13 +59,12 @@ public class PasarelaService {
             LOGGER.error(ex.getMessage());
         }
 
-        return respuesta;
     }
 
     // Consumir WS de Cobro
-    private GetPaidResponseOd consumirCobro(TipoSolicitudCompra GetPaidRequestOd) {
+    private TipoRespuesta consumirCobro(TipoSolicitudCompra GetPaidRequestOd) {
         long time;
-        GetPaidResponseOd getPaidResponseOd = null;
+        TipoRespuesta getPaidResponseOd = null;
 
         try {
             SoapConsumer consumer=new SoapConsumer();
@@ -73,9 +73,10 @@ public class PasarelaService {
                 LOGGER.debug("**** Consumo WS Cobro: INICIADO...");
 
             time = System.currentTimeMillis();
-            consumer.compraProcesar(GetPaidRequestOd);
+            getPaidResponseOd = consumer.compraProcesar(GetPaidRequestOd);
 
             if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("**** Consumo WS Cobro:" + getPaidResponseOd.getInfoRespuesta().getEstado());
                 time = System.currentTimeMillis() - time;
                 LOGGER.debug("**** Consumo WS Cobro: FINALIZADO. (" + time + " milisegundos)");
             }
