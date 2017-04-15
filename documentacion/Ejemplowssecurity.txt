@@ -1,0 +1,53 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cmp="http://www.rbm.com.co/esb/comercio/compra/" xmlns:cmr="http://www.rbm.com.co/esb/comercio/" xmlns:p="http://www.rbm.com.co/esb/comercio/compra" xmlns:rbm="http://www.rbm.com.co/esb/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+	<soapenv:Header>
+		<wsse:Security soapenv:mustUnderstand="1"> 
+			<wsse:UsernameToken> 
+ 				<wsse:Username>usuario</wsse:Username> 
+				<wsse:Password Type="PasswordText">password</wsse:Password> 
+			</wsse:UsernameToken>
+		</wsse:Security>
+	</soapenv:Header>
+	<soapenv:Body>
+		<cmp:compraProcesarSolicitud>
+			<cmp:cabeceraSolicitud>
+				<cmp:infoPuntoInteraccion>
+					<cmr:tipoTerminal>WEB</cmr:tipoTerminal>
+					<cmr:idTerminal>terminal</cmr:idTerminal>
+					<cmr:idAdquiriente>idAdquiriente</cmr:idAdquiriente>
+					<cmr:idTransaccionTerminal>001889</cmr:idTransaccionTerminal>
+					<cmr:modoCapturaPAN>Manual</cmr:modoCapturaPAN>
+					<cmr:capacidadPIN>Virtual</cmr:capacidadPIN>
+				</cmp:infoPuntoInteraccion>
+			</cmp:cabeceraSolicitud>
+			<cmp:idPersona>
+				<rbm:tipoDocumento>CC</rbm:tipoDocumento>
+				<rbm:numDocumento>72130284</rbm:numDocumento>
+			</cmp:idPersona>
+			<cmp:infoMedioPago>
+				<cmp:idTarjetaCredito>
+					<rbm:franquicia>MasterCard</rbm:franquicia>
+					<rbm:numTarjeta>5303710409428783</rbm:numTarjeta>
+					<rbm:fechaExpiracion>2015-07-07</rbm:fechaExpiracion>
+					<rbm:codVerificacion>115</rbm:codVerificacion>
+				</cmp:idTarjetaCredito>
+			</cmp:infoMedioPago>
+			<cmp:infoCompra>
+				<cmp:montoTotal>25000.00</cmp:montoTotal>
+				<cmp:infoImpuestos>
+					<rbm:tipoImpuesto>IVA</rbm:tipoImpuesto>
+					<rbm:monto>3400.00</rbm:monto>
+				</cmp:infoImpuestos>
+				<cmp:montoDetallado>
+					<rbm:tipoMontoDetallado>BaseDevolucionIVA</rbm:tipoMontoDetallado>
+					<rbm:monto>17851.00</rbm:monto>
+				</cmp:montoDetallado>
+				<cmp:montoDetallado>
+					<rbm:tipoMontoDetallado>MontoAdicional</rbm:tipoMontoDetallado>
+					<rbm:monto>3750.00</rbm:monto>
+				</cmp:montoDetallado>
+				<cmp:referencia>Mensaje Adicional 123</cmp:referencia>
+				<cmp:cantidadCuotas>1</cmp:cantidadCuotas>
+			</cmp:infoCompra>
+		</cmp:compraProcesarSolicitud>
+	</soapenv:Body>
+</soapenv:Envelope>

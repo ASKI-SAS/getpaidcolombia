@@ -1,5 +1,8 @@
 package com.ektec.utilidades.ws;
 
+import redeban.modelo.TipoRespuesta;
+import redeban.modelo.TipoSolicitudCompra;
+
 /*
  * Copyright @2017. ASKI, S.A.S. Todos los derechos reservados.
  *
@@ -11,5 +14,5 @@ public interface IConsumerWS {
 
     // Permite delvolver el resultado de consumir un WebService
     Object consume(String url, Object request, Class cls);
-
+    TipoRespuesta compraProcesar(TipoSolicitudCompra compraProcesarSolicitud);
 }

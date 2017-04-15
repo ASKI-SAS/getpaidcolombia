@@ -1,6 +1,8 @@
 package com.ektec.utilidades.ws;
 
 import org.apache.log4j.Logger;
+import redeban.modelo.TipoRespuesta;
+import redeban.modelo.TipoSolicitudCompra;
 
 /*
  * Copyright @2017. ASKI, S.A.S. Todos los derechos reservados.
@@ -14,6 +16,11 @@ public class RestConsumer implements IConsumerWS {
 
     @Override
     public Object consume(String url, Object request, Class cls) {
+        return null;
+    }
+
+    @Override
+    public TipoRespuesta compraProcesar(TipoSolicitudCompra compraProcesarSolicitud) {
         return null;
     }
 }

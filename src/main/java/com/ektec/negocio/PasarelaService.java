@@ -5,9 +5,11 @@ import com.ektec.od.GetPaidRequestOd;
 import com.ektec.od.GetPaidResponseOd;
 import com.ektec.utilidades.ConsumerClientRest;
 import com.ektec.utilidades.Utilidades;
+import com.ektec.utilidades.ws.SoapConsumer;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import redeban.modelo.TipoSolicitudCompra;
 
 import java.util.ResourceBundle;
 
@@ -33,23 +35,23 @@ public class PasarelaService {
     // Procesar Cobro
     public GetPaidResponseOd getPaid() throws Exception {
         GetPaidResponseOd respuesta = null;
-        GetPaidRequestOd getPaidRequestOd;
+        TipoSolicitudCompra getPaidRequestOd;
         try {
             // Desencolar un cobro
             Object obj = this.colaCobroDao.desencolar();
             if (obj != null) {
-                getPaidRequestOd = (GetPaidRequestOd) obj;
+                getPaidRequestOd = (TipoSolicitudCompra) obj;
 
                 // Envío a cobrar
                 respuesta = this.consumirCobro(getPaidRequestOd);
 
                 // Actualizo y guardo la respuesta
-                respuesta.setFolioTransaccion(getPaidRequestOd.getPeticion().getFolioTransaccion());
-                respuesta.setFechaHoraSolicitud(getPaidRequestOd.getSeguridad().getFechaHora());
+                //respuesta.setFolioTransaccion(getPaidRequestOd.getPeticion().getFolioTransaccion());
+                //respuesta.setFechaHoraSolicitud(getPaidRequestOd.getSeguridad().getFechaHora());
                 respuesta = (GetPaidResponseOd) this.colaCobroDao.encolar(respuesta);
 
                 if (LOGGER.isDebugEnabled())
-                    LOGGER.debug("\tServicio de cobro procesado satisfactoriamente. ID Servicio: " + getPaidRequestOd.getPeticion().getIdServicio());
+                    LOGGER.debug("\tServicio de cobro procesado satisfactoriamente. ID Servicio: " + getPaidRequestOd.getInfoCompra().getReferencia());
             }
 
         } catch (Exception ex) {
@@ -60,29 +62,18 @@ public class PasarelaService {
     }
 
     // Consumir WS de Cobro
-    private GetPaidResponseOd consumirCobro(GetPaidRequestOd GetPaidRequestOd) {
+    private GetPaidResponseOd consumirCobro(TipoSolicitudCompra GetPaidRequestOd) {
         long time;
         GetPaidResponseOd getPaidResponseOd = null;
 
         try {
-            ConsumerClientRest consumer = new ConsumerClientRest();
+            SoapConsumer consumer=new SoapConsumer();
 
             if (LOGGER.isDebugEnabled())
                 LOGGER.debug("**** Consumo WS Cobro: INICIADO...");
 
             time = System.currentTimeMillis();
-            if (GetPaidRequestOd.getPeticion().getTlv() != null) {
-                if (LOGGER.isDebugEnabled())
-                    LOGGER.debug("\tCobro por CHIP - " + new Gson().toJson(getPaidResponseOd));
-
-                getPaidResponseOd = (GetPaidResponseOd) consumer.consume(Utilidades.getPropiedadConfig("servicio.url.getPaidChip"), GetPaidRequestOd, GetPaidResponseOd.class);
-
-            } else {
-                if (LOGGER.isDebugEnabled())
-                    LOGGER.debug("\tCobro por BANDA - " + new Gson().toJson(getPaidResponseOd));
-
-                getPaidResponseOd = (GetPaidResponseOd) consumer.consume(Utilidades.getPropiedadConfig("servicio.url.getPaidBanda"), GetPaidRequestOd, GetPaidResponseOd.class);
-            }
+            consumer.compraProcesar(GetPaidRequestOd);
 
             if (LOGGER.isDebugEnabled()) {
                 time = System.currentTimeMillis() - time;

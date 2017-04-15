@@ -1,0 +1,130 @@
+				Tarjetas uso para realizar Pruebas
+
+PD: 
+1. Los campos que tengan la abreviatura N/A significa que no tiene un numero o valor fijo, por lo que se puede colocar cualquier opcion.
+2. La fecha de vencimiento de algunas tarjetas tienen dia/mes/año otras solo mes/año. 
+
+
+
+
+Franquicia: MasterCard 
+N° de tarjeta: 5303710409428783
+CVC2: N/A
+Fecha de Vencimiento:N/A
+tipo de identificacion: N/A
+N° de cedula: N/A
+
+
+
+Franquicia: MasterCard
+Banco: Occidente
+N° de tarjeta: 5406259070827507
+CVC2: 124
+Fecha de Vencimiento:30/06/2019
+tipo de identificacion: N/A
+N° de cedula: N/A
+
+
+Franquicia: MasterCard
+Banco: Occidente
+N° de tarjeta: 5473857273368969 
+CVC2:255
+Fecha de Vencimiento:30/08/2018
+tipo de identificacion: N/A 
+N° de cedula: N/A
+
+
+Franquicia: MasterCard
+Banco: Falabella
+N° de tarjeta:5282090000205368
+CVC2:306
+Fecha de Vencimiento:03/2019
+tipo de identificacion: CC
+N° de cedula: 30000090
+
+
+Franquicia: MasterCard
+Banco: Falabella
+N° de tarjeta: 5282090000205699
+CVC2:742
+Fecha de Vencimiento:03/2019
+tipo de identificacion: CC
+N° de cedula: 30000094
+
+
+Franquicia: CMRFalabella
+Banco: Falabella
+N° de tarjeta: 6271808010748155
+CVC2:162	
+Fecha de Vencimiento:11/2021
+tipo de identificacion: CC
+N° de cedula: 1016004805
+
+
+Franquicia: VISA
+Banco: DAVIVIENDA
+N° de tarjeta: 4559863683322976
+CVC2:559	
+Fecha de Vencimiento:11/2014
+tipo de identificacion: N/A
+N° de cedula: N/A
+
+
+
+Franquicia: VISA
+Banco: DAVIVIENDA
+N° de tarjeta: 4559864234326789
+CVC2:768	
+Fecha de Vencimiento:04/2019
+tipo de identificacion: N/A
+N° de cedula: N/A
+
+
+Franquicia: American Express
+Banco: BANCOLOMBIA
+N° de tarjeta: 377886029258784
+CVC2:231	
+Fecha de Vencimiento:12/2013
+tipo de identificacion: N/A
+N° de cedula: N/A
+            
+
+
+Franquicia: VISA
+Banco: N/A
+N° de tarjeta: 4570212435913531
+CVC2:813	
+Fecha de Vencimiento:06/2015
+tipo de identificacion: N/A
+N° de cedula: N/A
+
+
+
+Franquicia: VISA
+Banco: N/A
+N° de tarjeta: 4570211557422727
+CVC2:453	
+Fecha de Vencimiento:06/2015
+tipo de identificacion: N/A
+N° de cedula: N/A
+
+
+
+Franquicia: American Express
+Banco: N/A
+N° de tarjeta: 377845458621169
+CVC2:8265	
+Fecha de Vencimiento:12/2015
+tipo de identificacion: N/A
+N° de cedula: N/A
+
+
+
+Franquicia: American Express
+Banco: N/A
+N° de tarjeta: 377816150156739
+CVC2:1227	
+Fecha de Vencimiento:12/2015
+tipo de identificacion: N/A
+N° de cedula: N/A
+

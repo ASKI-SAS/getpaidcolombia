@@ -5,13 +5,22 @@ import com.ektec.utilidades.PublicKeyReader;
 import com.ektec.utilidades.Utilidades;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
+import redeban.modelo.*;
+import redeban.wsclient.ClientWs;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
+import static redeban.wsclient.ClientWs.compraProcesar;
 
 /*
  * Copyright @2017. ASKI, S.A.S. Todos los derechos reservados.
@@ -31,11 +40,11 @@ public class ColaCobroDao extends OracleDao implements IColaDao {
 
     @Override
     public Object encolar(Object obj) throws BDException {
-        GetPaidResponseOd respuesta = null;
+        TipoRespuesta respuesta = null;
         try {
-            if (!(obj instanceof GetPaidResponseOd))
+            if (!(obj instanceof TipoRespuesta))
                 throw new BDException("No se pueden enconlar este tipo de objeto");
-            GetPaidResponseOd respuestaCobro = (GetPaidResponseOd) obj;
+            TipoRespuesta respuestaCobro = (TipoRespuesta) obj;
 
             // Conectar con la BD
             connect();
@@ -43,7 +52,7 @@ public class ColaCobroDao extends OracleDao implements IColaDao {
             // Ejecutar la actualización
             callableStatement = connection.prepareCall("{CALL sp_ws_updentries(?,?,?,?,?,?,?,?,?)}");
             callableStatement.registerOutParameter(9, Types.NUMERIC);
-            if (respuestaCobro.getFolioTransaccion() != null)
+            /*if (respuestaCobro.getFolioTransaccion() != null)
                 callableStatement.setString(1, respuestaCobro.getFolioTransaccion());
             else
                 callableStatement.setNull(1, Types.NULL);
@@ -91,7 +100,7 @@ public class ColaCobroDao extends OracleDao implements IColaDao {
             respuesta.setEstado(callableStatement.getString(9));
             if (!respuesta.getEstado().equalsIgnoreCase("0"))
                 throw new BDException("Mensaje de la base de datos: " + respuesta.getEstado());
-
+*/
         } catch (SQLException sqle) {
             throw new BDException(sqle.getMessage());
 
@@ -147,7 +156,8 @@ public class ColaCobroDao extends OracleDao implements IColaDao {
             }
 
             // Obtener los datos del Objeto desde la BD
-            resultado = this.getPaidObject();
+            //resultado = this.getPaidObject();
+            resultado = this.getPaidRedeban();
 
         } catch (SQLException sqle) {
             throw new BDException(sqle.getMessage());
@@ -200,4 +210,75 @@ public class ColaCobroDao extends OracleDao implements IColaDao {
         return getPaidRequestOd;
 
     }
+
+    // Obtiene el objeto solicitud desde la BD
+    private TipoRespuesta getPaidRedeban() {
+        TipoSolicitudCompra request = new TipoSolicitudCompra();
+        TipoRespuesta respuesta = new TipoRespuesta();
+// PARTE DE LA SOLICITUD
+        TipoCabeceraSolicitud cabecera = new TipoCabeceraSolicitud();
+        TipoIdPersona idPersona = new TipoIdPersona();
+        TipoInfoMedioPago infoMedioPago = new TipoInfoMedioPago();
+        TipoInfoCompra infoCompra = new TipoInfoCompra();
+
+        try{
+
+// SE ARMA LA SOLICITUD
+            /* infoPuntoInteraccion */
+            cabecera.setInfoPuntoInteraccion(new TipoInfoPuntoInteraccion());
+            cabecera.getInfoPuntoInteraccion().setTipoTerminal(TipoTipoTerminal.WEB);
+            cabecera.getInfoPuntoInteraccion().setIdTerminal("ESB10718");
+            cabecera.getInfoPuntoInteraccion().setIdAdquiriente("1");
+            cabecera.getInfoPuntoInteraccion().setIdTransaccionTerminal(new Long("1897"));
+            cabecera.getInfoPuntoInteraccion().setModoCapturaPAN(TipoModoCapturaPAN.MANUAL);
+            cabecera.getInfoPuntoInteraccion().setCapacidadPIN(TipoCapacidadPIN.VIRTUAL);
+
+            /* idPersona */
+            idPersona.setTipoDocumento(TipoTipoDocumento.CC);
+            idPersona.setNumDocumento(new Long("72130284"));
+
+            /* infoMedioPago */
+            infoMedioPago.setIdTarjetaCredito(new TipoIdTarjetaCredito());
+            infoMedioPago.getIdTarjetaCredito().setFranquicia(TipoFranquicia.MASTER_CARD);
+            infoMedioPago.getIdTarjetaCredito().setNumTarjeta("5303710409428783");
+            GregorianCalendar c = new GregorianCalendar();
+            c.setTime(new Date());
+            XMLGregorianCalendar date2 = null;
+            date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+            infoMedioPago.getIdTarjetaCredito().setFechaExpiracion(date2);
+            infoMedioPago.getIdTarjetaCredito().setCodVerificacion("115");
+
+            /* infoCompra */
+            infoCompra.setMontoTotal(new BigDecimal("250000"));
+            infoCompra.setCantidadCuotas(1);
+            infoCompra.setReferencia("Mensaje Adicional 123");
+                /* infoImpuestos */
+            TipoInfoImpuestos tipoImpuesto = new TipoInfoImpuestos();
+            tipoImpuesto.setTipoImpuesto(TipoTipoImpuesto.IVA);
+            tipoImpuesto.setMonto(new BigDecimal("3400.00"));
+            infoCompra.getInfoImpuestos().add(tipoImpuesto);
+                /* infoImpuestos */
+            TipoMontoDetallado tipoMontoDetallado = new TipoMontoDetallado();
+            tipoMontoDetallado.setMonto(new BigDecimal("17851.00"));
+            tipoMontoDetallado.setTipoMontoDetallado(TipoTipoMontoDetallado.BASE_DEVOLUCION_IVA);
+            infoCompra.getMontoDetallado().add(tipoMontoDetallado);
+    // SOLICITUD
+            request.setCabeceraSolicitud(cabecera);
+            request.setIdPersona(idPersona);
+            request.setInfoCompra(infoCompra);
+            request.setInfoMedioPago(infoMedioPago);
+    // CONSUMO DEL SERVICIO
+            respuesta= ClientWs.compraProcesar(request);
+
+            System.out.print(respuesta.getInfoRespuesta().getEstado());
+        } catch(Exception e){
+            System.out.println("err" + e.getMessage());
+            e.printStackTrace();
+        }
+        return respuesta;
+    }
+
+
+
+
 }

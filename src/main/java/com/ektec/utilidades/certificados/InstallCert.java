@@ -1,4 +1,5 @@
-package com.ektec.utilidades.certificados;/*
+package com.ektec.utilidades.certificados;
+/*
  * Copyright 2006 Sun Microsystems, Inc.  All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,15 +56,16 @@ public class InstallCert {
             return;
         }
 
-        File file = new File("jssecacerts");
-        if (file.isFile() == false) {
+        File file;
+       // File file = new File("jssecacerts");
+      //  if (file.isFile() == false) {
             char SEP = File.separatorChar;
             File dir = new File(System.getProperty("java.home") + SEP + "lib" + SEP + "security");
             file = new File(dir, "jssecacerts");
             if (file.isFile() == false) {
                 file = new File(dir, "cacerts");
             }
-        }
+      //  }
         System.out.println("Loading KeyStore " + file + "...");
         InputStream in = new FileInputStream(file);
         KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
