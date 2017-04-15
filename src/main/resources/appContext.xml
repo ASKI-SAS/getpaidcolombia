@@ -5,23 +5,17 @@
             http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- Bases de Datos -->
-    <bean id="oracleDao" class="com.ektec.dao.OracleDao"/>
+    <bean id="oracleDao" class="com.ektec.dao.jdbc.OracleDao"/>
 
     <!-- Colas -->
-    <bean id="colaCobroDao" class="com.ektec.dao.ColaCobroDao" parent="oracleDao"/>
+    <bean id="colaCobroDao" class="com.ektec.dao.jdbc.ColaCobroDao" parent="oracleDao"/>
 
-    <bean id="colaReversoDao" class="com.ektec.dao.ColaReversoDao" parent="oracleDao"/>
+    <bean id="colaReversoDao" class="com.ektec.dao.jdbc.ColaReversoDao" parent="oracleDao"/>
 
     <!-- Servicio -->
-    <bean id="pasarelaService" scope="prototype" class="com.ektec.negocio.PasarelaService">
+    <bean id="pasarelaService" scope="prototype" class="com.ektec.negocio.impl.PasarelaService">
         <property name="colaCobroDao" ref="colaCobroDao"/>
         <property name="colaReversoDao" ref="colaReversoDao"/>
     </bean>
-
-    <!--<bean id="httpComponentsClientHttpRequestFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory"/>
-
-    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
-        <constructor-arg ref="httpComponentsClientHttpRequestFactory"/>
-    </bean>-->
 
 </beans>

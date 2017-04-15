@@ -1,5 +1,7 @@
 package com.ektec.dao;
 
+import com.ektec.exception.BDException;
+
 /*
  * Copyright @2017. ASKI, S.A.S. Todos los derechos reservados.
  *

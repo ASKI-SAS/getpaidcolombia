@@ -57,15 +57,15 @@ public class InstallCert {
         }
 
         File file;
-       // File file = new File("jssecacerts");
-      //  if (file.isFile() == false) {
-            char SEP = File.separatorChar;
-            File dir = new File(System.getProperty("java.home") + SEP + "lib" + SEP + "security");
-            file = new File(dir, "jssecacerts");
-            if (file.isFile() == false) {
-                file = new File(dir, "cacerts");
-            }
-      //  }
+        // File file = new File("jssecacerts");
+        //  if (file.isFile() == false) {
+        char SEP = File.separatorChar;
+        File dir = new File(System.getProperty("java.home") + SEP + "lib" + SEP + "security");
+        file = new File(dir, "jssecacerts");
+        if (file.isFile() == false) {
+            file = new File(dir, "cacerts");
+        }
+        //  }
         System.out.println("Loading KeyStore " + file + "...");
         InputStream in = new FileInputStream(file);
         KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
