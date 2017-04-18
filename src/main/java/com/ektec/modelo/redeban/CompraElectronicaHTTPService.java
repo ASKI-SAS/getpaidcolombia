@@ -25,7 +25,8 @@ public class CompraElectronicaHTTPService
 
     private final static URL COMPRAELECTRONICAHTTPSERVICE_WSDL_LOCATION;
     private final static WebServiceException COMPRAELECTRONICAHTTPSERVICE_EXCEPTION;
-    private final static QName COMPRAELECTRONICAHTTPSERVICE_QNAME = new QName("http://www.rbm.com.co/esb/comercio/compra/", "CompraElectronica_HTTP_Service");
+    private final static QName COMPRAELECTRONICAHTTPSERVICE_QNAME = new QName(Utilidades.getPropiedadConfig("servicio.getPaid.url"), "CompraElectronica_HTTP_Service");
+    private final static QName COMPRAELECTRONICAPORT_QNAME = new QName(Utilidades.getPropiedadConfig("servicio.getPaid.url"), "CompraElectronica_HTTP_Port");
 
     static {
         URL url = null;
@@ -70,7 +71,7 @@ public class CompraElectronicaHTTPService
      */
     @WebEndpoint(name = "CompraElectronica_HTTP_Port")
     public CompraElectronicaMsgSetPortType getCompraElectronicaHTTPPort() {
-        return super.getPort(new QName("http://www.rbm.com.co/esb/comercio/compra/", "CompraElectronica_HTTP_Port"), CompraElectronicaMsgSetPortType.class);
+        return super.getPort(COMPRAELECTRONICAPORT_QNAME, CompraElectronicaMsgSetPortType.class);
     }
 
     /**
@@ -82,11 +83,12 @@ public class CompraElectronicaHTTPService
      */
     @WebEndpoint(name = "CompraElectronica_HTTP_Port")
     public CompraElectronicaMsgSetPortType getCompraElectronicaHTTPPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://www.rbm.com.co/esb/comercio/compra/", "CompraElectronica_HTTP_Port"), CompraElectronicaMsgSetPortType.class, features);
+        return super.getPort(COMPRAELECTRONICAPORT_QNAME, CompraElectronicaMsgSetPortType.class, features);
     }
 
+    @org.jetbrains.annotations.Contract(pure = true)
     private static URL __getWsdlLocation() {
-        if (COMPRAELECTRONICAHTTPSERVICE_EXCEPTION!= null) {
+        if (COMPRAELECTRONICAHTTPSERVICE_EXCEPTION != null) {
             throw COMPRAELECTRONICAHTTPSERVICE_EXCEPTION;
         }
         return COMPRAELECTRONICAHTTPSERVICE_WSDL_LOCATION;
