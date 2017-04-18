@@ -18,7 +18,7 @@ import java.util.GregorianCalendar;
 /*
  * Copyright @2017. ASKI, S.A.S. Todos los derechos reservados.
  *
- * @author SERRANO, Manuel
+ * @author RIVAS, Rodolfo
  * @author RIVAS, Ronel
  * @version 1, 2013-09-26
  * @since 1.0
@@ -43,54 +43,115 @@ public class ColaCobroDao extends OracleDao implements IColaDao {
             connect();
 
             // Ejecutar la actualización
-            this.callableStatement = connection.prepareCall("{CALL sp_ws_updentries(?,?,?,?,?,?,?,?,?)}");
-            this.callableStatement.registerOutParameter(9, Types.NUMERIC);
-            /*if (respuestaCobro.getFolioTransaccion() != null)
-                this.callableStatement.setString(1, respuestaCobro.getFolioTransaccion());
+            this.callableStatement = connection.prepareCall("{CALL sp_ws_cobro_updentries(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            this.callableStatement.registerOutParameter(19, Types.NUMERIC);
+
+            // TipoCabeceraSolicitud
+            TipoCabeceraSolicitud cabecera = respuestaCobro.getCabeceraRespuesta();
+            if (cabecera.getInfoPuntoInteraccion().getTipoTerminal() != null)
+                this.callableStatement.setInt(1, cabecera.getInfoPuntoInteraccion().getTipoTerminal().ordinal());
             else
                 this.callableStatement.setNull(1, Types.NULL);
 
-            if (respuestaCobro.getIdRespuesta() != null)
-                this.callableStatement.setString(2, respuestaCobro.getIdRespuesta());
+            if (cabecera.getInfoPuntoInteraccion().getIdTerminal() != null)
+                this.callableStatement.setString(2, cabecera.getInfoPuntoInteraccion().getIdTerminal());
             else
                 this.callableStatement.setNull(2, Types.NULL);
 
-            if (respuestaCobro.getDescripcion() != null)
-                this.callableStatement.setString(3, respuestaCobro.getDescripcion());
+            if (cabecera.getInfoPuntoInteraccion().getIdAdquiriente() != null)
+                this.callableStatement.setString(3, cabecera.getInfoPuntoInteraccion().getIdAdquiriente());
             else
                 this.callableStatement.setNull(3, Types.NULL);
 
-            if (respuestaCobro.getAuditNumber() != null)
-                this.callableStatement.setString(4, respuestaCobro.getAuditNumber());
+            if (cabecera.getInfoPuntoInteraccion().getIdTransaccionTerminal() != 0)
+                this.callableStatement.setLong(4, cabecera.getInfoPuntoInteraccion().getIdTransaccionTerminal());
             else
                 this.callableStatement.setNull(4, Types.NULL);
 
-            if (respuestaCobro.getAuthorizationId() != null)
-                this.callableStatement.setString(5, respuestaCobro.getAuthorizationId());
+            if (cabecera.getInfoPuntoInteraccion().getModoCapturaPAN() != null)
+                this.callableStatement.setInt(5, cabecera.getInfoPuntoInteraccion().getModoCapturaPAN().ordinal());
             else
                 this.callableStatement.setNull(5, Types.NULL);
 
-            if (respuestaCobro.getResponseCode() != null)
-                this.callableStatement.setString(6, respuestaCobro.getResponseCode());
+            if (cabecera.getInfoPuntoInteraccion().getCapacidadPIN() != null)
+                this.callableStatement.setInt(6, cabecera.getInfoPuntoInteraccion().getCapacidadPIN().ordinal());
             else
                 this.callableStatement.setNull(6, Types.NULL);
 
-            if (respuestaCobro.getFechaHora() != null)
-                this.callableStatement.setString(7, respuestaCobro.getFechaHora());
+            // TipoInfoRespuesta
+            TipoInfoRespuesta infoRespuesta = respuestaCobro.getInfoRespuesta();
+            if (infoRespuesta.getCodRespuesta() != null)
+                this.callableStatement.setString(7, infoRespuesta.getCodRespuesta());
             else
                 this.callableStatement.setNull(7, Types.NULL);
 
-            if (respuestaCobro.getFechaHoraSolicitud() != null)
-                this.callableStatement.setString(8, respuestaCobro.getFechaHoraSolicitud());
+            if (infoRespuesta.getDescRespuesta() != null)
+                this.callableStatement.setString(8, infoRespuesta.getDescRespuesta());
             else
-                this.callableStatement.setNull(8, Types.NULL);*/
+                this.callableStatement.setNull(8, Types.NULL);
+
+            if (infoRespuesta.getDescRespuesta() != null)
+                this.callableStatement.setString(9, infoRespuesta.getDescRespuesta());
+            else
+                this.callableStatement.setNull(9, Types.NULL);
+
+            if (infoRespuesta.getEstado() != null)
+                this.callableStatement.setString(10, infoRespuesta.getEstado());
+            else
+                this.callableStatement.setNull(10, Types.NULL);
+
+            // TipoInfoCompraResp
+            TipoInfoCompraResp infoCompraResp = respuestaCobro.getInfoCompraResp();
+            if (infoCompraResp.getFechaTransaccion() != null)
+                this.callableStatement.setDate(11, new java.sql.Date(infoCompraResp.getFechaTransaccion().toGregorianCalendar().getTimeInMillis()));
+            else
+                this.callableStatement.setNull(11, Types.NULL);
+
+            if (infoCompraResp.getFechaPosteo() != null)
+                this.callableStatement.setDate(12, new java.sql.Date(infoCompraResp.getFechaPosteo().toGregorianCalendar().getTimeInMillis()));
+            else
+                this.callableStatement.setNull(12, Types.NULL);
+
+            if (infoCompraResp.getNumAprobacion() != null)
+                this.callableStatement.setString(13, infoCompraResp.getNumAprobacion());
+            else
+                this.callableStatement.setNull(13, Types.NULL);
+
+            // idTransaccionAutorizador
+            Long idTransaccionAutorizador = respuestaCobro.getIdTransaccionAutorizador();
+            if (idTransaccionAutorizador != 0)
+                this.callableStatement.setLong(14, idTransaccionAutorizador);
+            else
+                this.callableStatement.setNull(14, Types.NULL);
+
+            // TipoInfoTerminal
+            TipoInfoTerminal infoTerminal = respuestaCobro.getInfoTerminal();
+            if (infoTerminal.getNombreAdquiriente() != null)
+                this.callableStatement.setString(15, infoTerminal.getNombreAdquiriente());
+            else
+                this.callableStatement.setNull(15, Types.NULL);
+
+            if (infoTerminal.getInfoUbicacion().getCiudad() != null)
+                this.callableStatement.setString(16, infoTerminal.getInfoUbicacion().getCiudad());
+            else
+                this.callableStatement.setNull(16, Types.NULL);
+
+            if (infoTerminal.getInfoUbicacion().getDepartamento() != null)
+                this.callableStatement.setString(17, infoTerminal.getInfoUbicacion().getDepartamento());
+            else
+                this.callableStatement.setNull(17, Types.NULL);
+
+            if (infoTerminal.getInfoUbicacion().getPais() != null)
+                this.callableStatement.setString(18, infoTerminal.getInfoUbicacion().getPais());
+            else
+                this.callableStatement.setNull(18, Types.NULL);
 
             // Ejecutar la inserción
             this.callableStatement.executeUpdate();
 
             // Validar y devolver la respuesta
             respuesta = new GetPaidResponseOd();
-            respuesta.setEstado(this.callableStatement.getString(9));
+            respuesta.setEstado(this.callableStatement.getString(19));
             if (!respuesta.getEstado().equalsIgnoreCase("0"))
                 throw new BDException("Mensaje de la base de datos: " + respuesta.getEstado());
 
@@ -206,12 +267,14 @@ public class ColaCobroDao extends OracleDao implements IColaDao {
             infoCompra.setMontoTotal(new BigDecimal("250000"));
             infoCompra.setCantidadCuotas(1);
             infoCompra.setReferencia("Mensaje Adicional 123");
-                /* infoImpuestos */
+
+            /* infoImpuestos */
             TipoInfoImpuestos tipoImpuesto = new TipoInfoImpuestos();
             tipoImpuesto.setTipoImpuesto(TipoTipoImpuesto.IVA);
             tipoImpuesto.setMonto(new BigDecimal("3400.00"));
             infoCompra.getInfoImpuestos().add(tipoImpuesto);
-                /* infoImpuestos */
+
+            /* infoImpuestos */
             TipoMontoDetallado tipoMontoDetallado = new TipoMontoDetallado();
             tipoMontoDetallado.setMonto(new BigDecimal("17851.00"));
             tipoMontoDetallado.setTipoMontoDetallado(TipoTipoMontoDetallado.BASE_DEVOLUCION_IVA);

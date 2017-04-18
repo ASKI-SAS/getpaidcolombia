@@ -42,54 +42,98 @@ public class ColaReversoDao extends OracleDao implements IColaDao {
             connect();
 
             // Ejecutar la actualización
-            this.callableStatement = connection.prepareCall("{CALL sp_ws_updentries(?,?,?,?,?,?,?,?,?)}");
-            this.callableStatement.registerOutParameter(9, Types.NUMERIC);
-            /*if (respuestaReverso.getFolioTransaccion() != null)
-                this.callableStatement.setString(1, respuestaReverso.getFolioTransaccion());
+            this.callableStatement = connection.prepareCall("{CALL sp_ws_reverso_updentries(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            this.callableStatement.registerOutParameter(16, Types.NUMERIC);
+
+            // TipoCabeceraSolicitud
+            TipoCabeceraSolicitud cabecera = respuestaReverso.getCabeceraRespuesta();
+            if (cabecera.getInfoPuntoInteraccion().getTipoTerminal() != null)
+                this.callableStatement.setInt(1, cabecera.getInfoPuntoInteraccion().getTipoTerminal().ordinal());
             else
                 this.callableStatement.setNull(1, Types.NULL);
 
-            if (respuestaReverso.getIdRespuesta() != null)
-                this.callableStatement.setString(2, respuestaReverso.getIdRespuesta());
+            if (cabecera.getInfoPuntoInteraccion().getIdTerminal() != null)
+                this.callableStatement.setString(2, cabecera.getInfoPuntoInteraccion().getIdTerminal());
             else
                 this.callableStatement.setNull(2, Types.NULL);
 
-            if (respuestaReverso.getDescripcion() != null)
-                this.callableStatement.setString(3, respuestaReverso.getDescripcion());
+            if (cabecera.getInfoPuntoInteraccion().getIdAdquiriente() != null)
+                this.callableStatement.setString(3, cabecera.getInfoPuntoInteraccion().getIdAdquiriente());
             else
                 this.callableStatement.setNull(3, Types.NULL);
 
-            if (respuestaReverso.getAuditNumber() != null)
-                this.callableStatement.setString(4, respuestaReverso.getAuditNumber());
+            if (cabecera.getInfoPuntoInteraccion().getIdTransaccionTerminal() != 0)
+                this.callableStatement.setLong(4, cabecera.getInfoPuntoInteraccion().getIdTransaccionTerminal());
             else
                 this.callableStatement.setNull(4, Types.NULL);
 
-            if (respuestaReverso.getAuthorizationId() != null)
-                this.callableStatement.setString(5, respuestaReverso.getAuthorizationId());
+            if (cabecera.getInfoPuntoInteraccion().getModoCapturaPAN() != null)
+                this.callableStatement.setInt(5, cabecera.getInfoPuntoInteraccion().getModoCapturaPAN().ordinal());
             else
                 this.callableStatement.setNull(5, Types.NULL);
 
-            if (respuestaReverso.getResponseCode() != null)
-                this.callableStatement.setString(6, respuestaReverso.getResponseCode());
+            if (cabecera.getInfoPuntoInteraccion().getCapacidadPIN() != null)
+                this.callableStatement.setInt(6, cabecera.getInfoPuntoInteraccion().getCapacidadPIN().ordinal());
             else
                 this.callableStatement.setNull(6, Types.NULL);
 
-            if (respuestaReverso.getFechaHora() != null)
-                this.callableStatement.setString(7, respuestaReverso.getFechaHora());
+            // TipoInfoRespuesta
+            TipoInfoRespuesta infoRespuesta = respuestaReverso.getInfoRespuesta();
+            if (infoRespuesta.getCodRespuesta() != null)
+                this.callableStatement.setString(7, infoRespuesta.getCodRespuesta());
             else
                 this.callableStatement.setNull(7, Types.NULL);
 
-            if (respuestaReverso.getFechaHoraSolicitud() != null)
-                this.callableStatement.setString(8, respuestaReverso.getFechaHoraSolicitud());
+            if (infoRespuesta.getDescRespuesta() != null)
+                this.callableStatement.setString(8, infoRespuesta.getDescRespuesta());
             else
-                this.callableStatement.setNull(8, Types.NULL);*/
+                this.callableStatement.setNull(8, Types.NULL);
+
+            if (infoRespuesta.getDescRespuesta() != null)
+                this.callableStatement.setString(9, infoRespuesta.getDescRespuesta());
+            else
+                this.callableStatement.setNull(9, Types.NULL);
+
+            if (infoRespuesta.getEstado() != null)
+                this.callableStatement.setString(10, infoRespuesta.getEstado());
+            else
+                this.callableStatement.setNull(10, Types.NULL);
+
+            // idTransaccionAutorizador
+            Long idTransaccionAutorizador = respuestaReverso.getIdTransaccionAutorizador();
+            if (idTransaccionAutorizador != 0)
+                this.callableStatement.setLong(11, idTransaccionAutorizador);
+            else
+                this.callableStatement.setNull(11, Types.NULL);
+
+            // TipoInfoTerminal
+            TipoInfoTerminal infoTerminal = respuestaReverso.getInfoTerminal();
+            if (infoTerminal.getNombreAdquiriente() != null)
+                this.callableStatement.setString(12, infoTerminal.getNombreAdquiriente());
+            else
+                this.callableStatement.setNull(12, Types.NULL);
+
+            if (infoTerminal.getInfoUbicacion().getCiudad() != null)
+                this.callableStatement.setString(13, infoTerminal.getInfoUbicacion().getCiudad());
+            else
+                this.callableStatement.setNull(13, Types.NULL);
+
+            if (infoTerminal.getInfoUbicacion().getDepartamento() != null)
+                this.callableStatement.setString(14, infoTerminal.getInfoUbicacion().getDepartamento());
+            else
+                this.callableStatement.setNull(14, Types.NULL);
+
+            if (infoTerminal.getInfoUbicacion().getPais() != null)
+                this.callableStatement.setString(15, infoTerminal.getInfoUbicacion().getPais());
+            else
+                this.callableStatement.setNull(15, Types.NULL);
 
             // Ejecutar la inserción
             this.callableStatement.executeUpdate();
 
             // Validar y devolver la respuesta
             respuesta = new GetPaidResponseOd();
-            respuesta.setEstado(this.callableStatement.getString(9));
+            respuesta.setEstado(this.callableStatement.getString(16));
             if (!respuesta.getEstado().equalsIgnoreCase("0"))
                 throw new BDException("Mensaje de la base de datos: " + respuesta.getEstado());
 
