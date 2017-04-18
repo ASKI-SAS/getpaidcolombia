@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * 
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoInfoPuntoInteraccion", namespace = "http://www.rbm.com.co/esb/comercio/", propOrder = {
     "tipoTerminal",

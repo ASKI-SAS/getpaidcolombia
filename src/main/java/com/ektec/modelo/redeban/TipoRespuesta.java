@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlType;
     "idTransaccionAutorizador",
     "infoTerminal"
 })
+
 public class TipoRespuesta {
 
     @XmlElement(required = true)

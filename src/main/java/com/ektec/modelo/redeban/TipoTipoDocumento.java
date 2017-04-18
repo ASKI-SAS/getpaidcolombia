@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
+
 @XmlType(name = "TipoTipoDocumento")
 @XmlEnum
 public enum TipoTipoDocumento {

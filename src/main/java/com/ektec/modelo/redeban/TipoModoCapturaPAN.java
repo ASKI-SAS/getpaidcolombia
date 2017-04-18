@@ -27,7 +27,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
- * 
+ *
+ *
  */
 @XmlType(name = "TipoModoCapturaPAN", namespace = "http://www.rbm.com.co/esb/comercio/")
 @XmlEnum

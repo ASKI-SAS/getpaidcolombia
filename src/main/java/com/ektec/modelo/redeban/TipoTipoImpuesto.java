@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
+
 @XmlType(name = "TipoTipoImpuesto")
 @XmlEnum
 public enum TipoTipoImpuesto {
