@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoIdTrack complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoIdTrack">
  *   &lt;complexContent>
@@ -24,11 +25,13 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoIdTrack", propOrder = {
-        "track",
-        "tipoCuenta"
+    "track",
+    "tipoCuenta"
 })
 public class TipoIdTrack {
 
@@ -39,9 +42,11 @@ public class TipoIdTrack {
 
     /**
      * Obtiene el valor de la propiedad track.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getTrack() {
         return track;
@@ -49,9 +54,11 @@ public class TipoIdTrack {
 
     /**
      * Define el valor de la propiedad track.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setTrack(String value) {
         this.track = value;
@@ -59,9 +66,11 @@ public class TipoIdTrack {
 
     /**
      * Obtiene el valor de la propiedad tipoCuenta.
-     *
-     * @return possible object is
-     * {@link TipoTipoBolsillo }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoTipoBolsillo }
+     *     
      */
     public TipoTipoBolsillo getTipoCuenta() {
         return tipoCuenta;
@@ -69,9 +78,11 @@ public class TipoIdTrack {
 
     /**
      * Define el valor de la propiedad tipoCuenta.
-     *
-     * @param value allowed object is
-     *              {@link TipoTipoBolsillo }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoTipoBolsillo }
+     *     
      */
     public void setTipoCuenta(TipoTipoBolsillo value) {
         this.tipoCuenta = value;

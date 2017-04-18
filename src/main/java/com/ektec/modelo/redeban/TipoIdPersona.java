@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoIdPersona complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoIdPersona">
  *   &lt;complexContent>
@@ -24,11 +25,13 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoIdPersona", propOrder = {
-        "tipoDocumento",
-        "numDocumento"
+    "tipoDocumento",
+    "numDocumento"
 })
 public class TipoIdPersona {
 
@@ -38,9 +41,11 @@ public class TipoIdPersona {
 
     /**
      * Obtiene el valor de la propiedad tipoDocumento.
-     *
-     * @return possible object is
-     * {@link TipoTipoDocumento }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoTipoDocumento }
+     *     
      */
     public TipoTipoDocumento getTipoDocumento() {
         return tipoDocumento;
@@ -48,9 +53,11 @@ public class TipoIdPersona {
 
     /**
      * Define el valor de la propiedad tipoDocumento.
-     *
-     * @param value allowed object is
-     *              {@link TipoTipoDocumento }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoTipoDocumento }
+     *     
      */
     public void setTipoDocumento(TipoTipoDocumento value) {
         this.tipoDocumento = value;
@@ -58,6 +65,7 @@ public class TipoIdPersona {
 
     /**
      * Obtiene el valor de la propiedad numDocumento.
+     * 
      */
     public long getNumDocumento() {
         return numDocumento;
@@ -65,6 +73,7 @@ public class TipoIdPersona {
 
     /**
      * Define el valor de la propiedad numDocumento.
+     * 
      */
     public void setNumDocumento(long value) {
         this.numDocumento = value;

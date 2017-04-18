@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -8,9 +9,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoInfoMedioPago complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoInfoMedioPago">
  *   &lt;complexContent>
@@ -30,16 +31,18 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TipoInfoMedioPago", namespace = "http://www.rbm.com.co/esb/comercio/redeban/", propOrder = {
-        "idTrack",
-        "idTarjetaDebitoPrivada",
-        "idTarjetaCreditoPrivada",
-        "idTarjetaCredito",
-        "idCuenta",
-        "infoCHIP",
-        "infoAutenticacion"
+@XmlType(name = "TipoInfoMedioPago", namespace = "http://www.rbm.com.co/esb/comercio/compra/", propOrder = {
+    "idTrack",
+    "idTarjetaDebitoPrivada",
+    "idTarjetaCreditoPrivada",
+    "idTarjetaCredito",
+    "idCuenta",
+    "infoCHIP",
+    "infoAutenticacion"
 })
 public class TipoInfoMedioPago {
 
@@ -53,9 +56,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Obtiene el valor de la propiedad idTrack.
-     *
-     * @return possible object is
-     * {@link TipoIdTrack }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoIdTrack }
+     *     
      */
     public TipoIdTrack getIdTrack() {
         return idTrack;
@@ -63,9 +68,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Define el valor de la propiedad idTrack.
-     *
-     * @param value allowed object is
-     *              {@link TipoIdTrack }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoIdTrack }
+     *     
      */
     public void setIdTrack(TipoIdTrack value) {
         this.idTrack = value;
@@ -73,9 +80,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Obtiene el valor de la propiedad idTarjetaDebitoPrivada.
-     *
-     * @return possible object is
-     * {@link TipoIdTarjetaDebitoPrivada }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoIdTarjetaDebitoPrivada }
+     *     
      */
     public TipoIdTarjetaDebitoPrivada getIdTarjetaDebitoPrivada() {
         return idTarjetaDebitoPrivada;
@@ -83,9 +92,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Define el valor de la propiedad idTarjetaDebitoPrivada.
-     *
-     * @param value allowed object is
-     *              {@link TipoIdTarjetaDebitoPrivada }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoIdTarjetaDebitoPrivada }
+     *     
      */
     public void setIdTarjetaDebitoPrivada(TipoIdTarjetaDebitoPrivada value) {
         this.idTarjetaDebitoPrivada = value;
@@ -93,9 +104,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Obtiene el valor de la propiedad idTarjetaCreditoPrivada.
-     *
-     * @return possible object is
-     * {@link TipoIdTarjetaCreditoPrivada }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoIdTarjetaCreditoPrivada }
+     *     
      */
     public TipoIdTarjetaCreditoPrivada getIdTarjetaCreditoPrivada() {
         return idTarjetaCreditoPrivada;
@@ -103,9 +116,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Define el valor de la propiedad idTarjetaCreditoPrivada.
-     *
-     * @param value allowed object is
-     *              {@link TipoIdTarjetaCreditoPrivada }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoIdTarjetaCreditoPrivada }
+     *     
      */
     public void setIdTarjetaCreditoPrivada(TipoIdTarjetaCreditoPrivada value) {
         this.idTarjetaCreditoPrivada = value;
@@ -113,9 +128,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Obtiene el valor de la propiedad idTarjetaCredito.
-     *
-     * @return possible object is
-     * {@link TipoIdTarjetaCredito }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoIdTarjetaCredito }
+     *     
      */
     public TipoIdTarjetaCredito getIdTarjetaCredito() {
         return idTarjetaCredito;
@@ -123,9 +140,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Define el valor de la propiedad idTarjetaCredito.
-     *
-     * @param value allowed object is
-     *              {@link TipoIdTarjetaCredito }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoIdTarjetaCredito }
+     *     
      */
     public void setIdTarjetaCredito(TipoIdTarjetaCredito value) {
         this.idTarjetaCredito = value;
@@ -133,9 +152,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Obtiene el valor de la propiedad idCuenta.
-     *
-     * @return possible object is
-     * {@link TipoIdCuenta }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoIdCuenta }
+     *     
      */
     public TipoIdCuenta getIdCuenta() {
         return idCuenta;
@@ -143,9 +164,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Define el valor de la propiedad idCuenta.
-     *
-     * @param value allowed object is
-     *              {@link TipoIdCuenta }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoIdCuenta }
+     *     
      */
     public void setIdCuenta(TipoIdCuenta value) {
         this.idCuenta = value;
@@ -153,9 +176,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Obtiene el valor de la propiedad infoCHIP.
-     *
-     * @return possible object is
-     * {@link TipoInfoCHIP }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoInfoCHIP }
+     *     
      */
     public TipoInfoCHIP getInfoCHIP() {
         return infoCHIP;
@@ -163,9 +188,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Define el valor de la propiedad infoCHIP.
-     *
-     * @param value allowed object is
-     *              {@link TipoInfoCHIP }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoInfoCHIP }
+     *     
      */
     public void setInfoCHIP(TipoInfoCHIP value) {
         this.infoCHIP = value;
@@ -173,9 +200,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Obtiene el valor de la propiedad infoAutenticacion.
-     *
-     * @return possible object is
-     * {@link TipoInfoAutenticacion }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoInfoAutenticacion }
+     *     
      */
     public TipoInfoAutenticacion getInfoAutenticacion() {
         return infoAutenticacion;
@@ -183,9 +212,11 @@ public class TipoInfoMedioPago {
 
     /**
      * Define el valor de la propiedad infoAutenticacion.
-     *
-     * @param value allowed object is
-     *              {@link TipoInfoAutenticacion }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoInfoAutenticacion }
+     *     
      */
     public void setInfoAutenticacion(TipoInfoAutenticacion value) {
         this.infoAutenticacion = value;

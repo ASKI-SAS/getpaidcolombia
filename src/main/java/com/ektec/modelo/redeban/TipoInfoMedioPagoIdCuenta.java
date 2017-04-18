@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoInfoMedioPagoIdCuenta complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoInfoMedioPagoIdCuenta">
  *   &lt;complexContent>
@@ -23,10 +24,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TipoInfoMedioPagoIdCuenta", namespace = "http://www.rbm.com.co/esb/comercio/redeban/", propOrder = {
-        "idCuenta"
+@XmlType(name = "TipoInfoMedioPagoIdCuenta", namespace = "http://www.rbm.com.co/esb/comercio/compra/", propOrder = {
+    "idCuenta"
 })
 public class TipoInfoMedioPagoIdCuenta {
 
@@ -35,9 +38,11 @@ public class TipoInfoMedioPagoIdCuenta {
 
     /**
      * Obtiene el valor de la propiedad idCuenta.
-     *
-     * @return possible object is
-     * {@link TipoIdCuenta }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoIdCuenta }
+     *     
      */
     public TipoIdCuenta getIdCuenta() {
         return idCuenta;
@@ -45,9 +50,11 @@ public class TipoInfoMedioPagoIdCuenta {
 
     /**
      * Define el valor de la propiedad idCuenta.
-     *
-     * @param value allowed object is
-     *              {@link TipoIdCuenta }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoIdCuenta }
+     *     
      */
     public void setIdCuenta(TipoIdCuenta value) {
         this.idCuenta = value;

@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoInfoRefCancelacion complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoInfoRefCancelacion">
  *   &lt;complexContent>
@@ -24,11 +25,13 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoInfoRefCancelacion", propOrder = {
-        "numAprobacion",
-        "idTransaccionAutorizador"
+    "numAprobacion",
+    "idTransaccionAutorizador"
 })
 public class TipoInfoRefCancelacion {
 
@@ -38,9 +41,11 @@ public class TipoInfoRefCancelacion {
 
     /**
      * Obtiene el valor de la propiedad numAprobacion.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getNumAprobacion() {
         return numAprobacion;
@@ -48,9 +53,11 @@ public class TipoInfoRefCancelacion {
 
     /**
      * Define el valor de la propiedad numAprobacion.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setNumAprobacion(String value) {
         this.numAprobacion = value;
@@ -58,6 +65,7 @@ public class TipoInfoRefCancelacion {
 
     /**
      * Obtiene el valor de la propiedad idTransaccionAutorizador.
+     * 
      */
     public long getIdTransaccionAutorizador() {
         return idTransaccionAutorizador;
@@ -65,6 +73,7 @@ public class TipoInfoRefCancelacion {
 
     /**
      * Define el valor de la propiedad idTransaccionAutorizador.
+     * 
      */
     public void setIdTransaccionAutorizador(long value) {
         this.idTransaccionAutorizador = value;

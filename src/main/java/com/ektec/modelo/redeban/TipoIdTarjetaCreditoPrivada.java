@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoIdTarjetaCreditoPrivada complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoIdTarjetaCreditoPrivada">
  *   &lt;complexContent>
@@ -26,13 +27,15 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoIdTarjetaCreditoPrivada", propOrder = {
-        "franquicia",
-        "numTarjeta",
-        "tipoBolsillo",
-        "codVerificacion"
+    "franquicia",
+    "numTarjeta",
+    "tipoBolsillo",
+    "codVerificacion"
 })
 public class TipoIdTarjetaCreditoPrivada {
 
@@ -46,9 +49,11 @@ public class TipoIdTarjetaCreditoPrivada {
 
     /**
      * Obtiene el valor de la propiedad franquicia.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getFranquicia() {
         return franquicia;
@@ -56,9 +61,11 @@ public class TipoIdTarjetaCreditoPrivada {
 
     /**
      * Define el valor de la propiedad franquicia.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setFranquicia(String value) {
         this.franquicia = value;
@@ -66,9 +73,11 @@ public class TipoIdTarjetaCreditoPrivada {
 
     /**
      * Obtiene el valor de la propiedad numTarjeta.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getNumTarjeta() {
         return numTarjeta;
@@ -76,9 +85,11 @@ public class TipoIdTarjetaCreditoPrivada {
 
     /**
      * Define el valor de la propiedad numTarjeta.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setNumTarjeta(String value) {
         this.numTarjeta = value;
@@ -86,9 +97,11 @@ public class TipoIdTarjetaCreditoPrivada {
 
     /**
      * Obtiene el valor de la propiedad tipoBolsillo.
-     *
-     * @return possible object is
-     * {@link TipoTipoBolsillo }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoTipoBolsillo }
+     *     
      */
     public TipoTipoBolsillo getTipoBolsillo() {
         return tipoBolsillo;
@@ -96,9 +109,11 @@ public class TipoIdTarjetaCreditoPrivada {
 
     /**
      * Define el valor de la propiedad tipoBolsillo.
-     *
-     * @param value allowed object is
-     *              {@link TipoTipoBolsillo }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoTipoBolsillo }
+     *     
      */
     public void setTipoBolsillo(TipoTipoBolsillo value) {
         this.tipoBolsillo = value;
@@ -106,9 +121,11 @@ public class TipoIdTarjetaCreditoPrivada {
 
     /**
      * Obtiene el valor de la propiedad codVerificacion.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getCodVerificacion() {
         return codVerificacion;
@@ -116,9 +133,11 @@ public class TipoIdTarjetaCreditoPrivada {
 
     /**
      * Define el valor de la propiedad codVerificacion.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setCodVerificacion(String value) {
         this.codVerificacion = value;

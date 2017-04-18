@@ -183,7 +183,7 @@ public class ColaCobroDao extends OracleDao implements IColaDao {
             cabecera.getInfoPuntoInteraccion().setTipoTerminal(TipoTipoTerminal.WEB);
             cabecera.getInfoPuntoInteraccion().setIdTerminal("ESB10718");
             cabecera.getInfoPuntoInteraccion().setIdAdquiriente("1");
-            cabecera.getInfoPuntoInteraccion().setIdTransaccionTerminal(new Long("1897"));
+            cabecera.getInfoPuntoInteraccion().setIdTransaccionTerminal(new Long("2000"));
             cabecera.getInfoPuntoInteraccion().setModoCapturaPAN(TipoModoCapturaPAN.MANUAL);
             cabecera.getInfoPuntoInteraccion().setCapacidadPIN(TipoCapacidadPIN.VIRTUAL);
 

@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
@@ -8,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoTipoTerminal.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * <p>
  * <pre>
@@ -35,6 +36,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
+ * 
  */
 @XmlType(name = "TipoTipoTerminal", namespace = "http://www.rbm.com.co/esb/comercio/")
 @XmlEnum
@@ -83,7 +85,7 @@ public enum TipoTipoTerminal {
     }
 
     public static TipoTipoTerminal fromValue(String v) {
-        for (TipoTipoTerminal c : TipoTipoTerminal.values()) {
+        for (TipoTipoTerminal c: TipoTipoTerminal.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

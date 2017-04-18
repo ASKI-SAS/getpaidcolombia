@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
@@ -8,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoCapacidadPIN.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * <p>
  * <pre>
@@ -24,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
+ * 
  */
 @XmlType(name = "TipoCapacidadPIN", namespace = "http://www.rbm.com.co/esb/comercio/")
 @XmlEnum
@@ -54,7 +56,7 @@ public enum TipoCapacidadPIN {
     }
 
     public static TipoCapacidadPIN fromValue(String v) {
-        for (TipoCapacidadPIN c : TipoCapacidadPIN.values()) {
+        for (TipoCapacidadPIN c: TipoCapacidadPIN.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

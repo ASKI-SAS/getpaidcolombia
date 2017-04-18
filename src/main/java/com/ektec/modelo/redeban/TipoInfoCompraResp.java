@@ -1,18 +1,23 @@
 
 package com.ektec.modelo.redeban;
 
-import javax.xml.bind.annotation.*;
-import javax.xml.datatype.XMLGregorianCalendar;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Clase Java para TipoInfoCompraResp complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoInfoCompraResp">
  *   &lt;complexContent>
@@ -28,14 +33,16 @@ import java.util.List;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TipoInfoCompraResp", namespace = "http://www.rbm.com.co/esb/comercio/redeban/", propOrder = {
-        "fechaTransaccion",
-        "fechaPosteo",
-        "numAprobacion",
-        "costoTransaccion",
-        "infoAdicional"
+@XmlType(name = "TipoInfoCompraResp", namespace = "http://www.rbm.com.co/esb/comercio/compra/", propOrder = {
+    "fechaTransaccion",
+    "fechaPosteo",
+    "numAprobacion",
+    "costoTransaccion",
+    "infoAdicional"
 })
 public class TipoInfoCompraResp {
 
@@ -52,9 +59,11 @@ public class TipoInfoCompraResp {
 
     /**
      * Obtiene el valor de la propiedad fechaTransaccion.
-     *
-     * @return possible object is
-     * {@link XMLGregorianCalendar }
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
      */
     public XMLGregorianCalendar getFechaTransaccion() {
         return fechaTransaccion;
@@ -62,9 +71,11 @@ public class TipoInfoCompraResp {
 
     /**
      * Define el valor de la propiedad fechaTransaccion.
-     *
-     * @param value allowed object is
-     *              {@link XMLGregorianCalendar }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
      */
     public void setFechaTransaccion(XMLGregorianCalendar value) {
         this.fechaTransaccion = value;
@@ -72,9 +83,11 @@ public class TipoInfoCompraResp {
 
     /**
      * Obtiene el valor de la propiedad fechaPosteo.
-     *
-     * @return possible object is
-     * {@link XMLGregorianCalendar }
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
      */
     public XMLGregorianCalendar getFechaPosteo() {
         return fechaPosteo;
@@ -82,9 +95,11 @@ public class TipoInfoCompraResp {
 
     /**
      * Define el valor de la propiedad fechaPosteo.
-     *
-     * @param value allowed object is
-     *              {@link XMLGregorianCalendar }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
      */
     public void setFechaPosteo(XMLGregorianCalendar value) {
         this.fechaPosteo = value;
@@ -92,9 +107,11 @@ public class TipoInfoCompraResp {
 
     /**
      * Obtiene el valor de la propiedad numAprobacion.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getNumAprobacion() {
         return numAprobacion;
@@ -102,9 +119,11 @@ public class TipoInfoCompraResp {
 
     /**
      * Define el valor de la propiedad numAprobacion.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setNumAprobacion(String value) {
         this.numAprobacion = value;
@@ -112,9 +131,11 @@ public class TipoInfoCompraResp {
 
     /**
      * Obtiene el valor de la propiedad costoTransaccion.
-     *
-     * @return possible object is
-     * {@link BigDecimal }
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
      */
     public BigDecimal getCostoTransaccion() {
         return costoTransaccion;
@@ -122,9 +143,11 @@ public class TipoInfoCompraResp {
 
     /**
      * Define el valor de la propiedad costoTransaccion.
-     *
-     * @param value allowed object is
-     *              {@link BigDecimal }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
      */
     public void setCostoTransaccion(BigDecimal value) {
         this.costoTransaccion = value;
@@ -132,23 +155,25 @@ public class TipoInfoCompraResp {
 
     /**
      * Gets the value of the infoAdicional property.
-     * <p>
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the infoAdicional property.
-     * <p>
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getInfoAdicional().add(newItem);
      * </pre>
-     * <p>
-     * <p>
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link TipoInfoAdicional }
+     * 
+     * 
      */
     public List<TipoInfoAdicional> getInfoAdicional() {
         if (infoAdicional == null) {

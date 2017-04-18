@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoRespuesta complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoRespuesta">
  *   &lt;complexContent>
@@ -27,14 +28,16 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TipoRespuesta", namespace = "http://www.rbm.com.co/esb/comercio/redeban/", propOrder = {
-        "cabeceraRespuesta",
-        "infoRespuesta",
-        "infoCompraResp",
-        "idTransaccionAutorizador",
-        "infoTerminal"
+@XmlType(name = "TipoRespuesta", namespace = "http://www.rbm.com.co/esb/comercio/compra/", propOrder = {
+    "cabeceraRespuesta",
+    "infoRespuesta",
+    "infoCompraResp",
+    "idTransaccionAutorizador",
+    "infoTerminal"
 })
 public class TipoRespuesta {
 
@@ -48,9 +51,11 @@ public class TipoRespuesta {
 
     /**
      * Obtiene el valor de la propiedad cabeceraRespuesta.
-     *
-     * @return possible object is
-     * {@link TipoCabeceraSolicitud }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoCabeceraSolicitud }
+     *     
      */
     public TipoCabeceraSolicitud getCabeceraRespuesta() {
         return cabeceraRespuesta;
@@ -58,9 +63,11 @@ public class TipoRespuesta {
 
     /**
      * Define el valor de la propiedad cabeceraRespuesta.
-     *
-     * @param value allowed object is
-     *              {@link TipoCabeceraSolicitud }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoCabeceraSolicitud }
+     *     
      */
     public void setCabeceraRespuesta(TipoCabeceraSolicitud value) {
         this.cabeceraRespuesta = value;
@@ -68,9 +75,11 @@ public class TipoRespuesta {
 
     /**
      * Obtiene el valor de la propiedad infoRespuesta.
-     *
-     * @return possible object is
-     * {@link TipoInfoRespuesta }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoInfoRespuesta }
+     *     
      */
     public TipoInfoRespuesta getInfoRespuesta() {
         return infoRespuesta;
@@ -78,9 +87,11 @@ public class TipoRespuesta {
 
     /**
      * Define el valor de la propiedad infoRespuesta.
-     *
-     * @param value allowed object is
-     *              {@link TipoInfoRespuesta }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoInfoRespuesta }
+     *     
      */
     public void setInfoRespuesta(TipoInfoRespuesta value) {
         this.infoRespuesta = value;
@@ -88,9 +99,11 @@ public class TipoRespuesta {
 
     /**
      * Obtiene el valor de la propiedad infoCompraResp.
-     *
-     * @return possible object is
-     * {@link TipoInfoCompraResp }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoInfoCompraResp }
+     *     
      */
     public TipoInfoCompraResp getInfoCompraResp() {
         return infoCompraResp;
@@ -98,9 +111,11 @@ public class TipoRespuesta {
 
     /**
      * Define el valor de la propiedad infoCompraResp.
-     *
-     * @param value allowed object is
-     *              {@link TipoInfoCompraResp }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoInfoCompraResp }
+     *     
      */
     public void setInfoCompraResp(TipoInfoCompraResp value) {
         this.infoCompraResp = value;
@@ -108,9 +123,11 @@ public class TipoRespuesta {
 
     /**
      * Obtiene el valor de la propiedad idTransaccionAutorizador.
-     *
-     * @return possible object is
-     * {@link Long }
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
     public Long getIdTransaccionAutorizador() {
         return idTransaccionAutorizador;
@@ -118,9 +135,11 @@ public class TipoRespuesta {
 
     /**
      * Define el valor de la propiedad idTransaccionAutorizador.
-     *
-     * @param value allowed object is
-     *              {@link Long }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
     public void setIdTransaccionAutorizador(Long value) {
         this.idTransaccionAutorizador = value;
@@ -128,9 +147,11 @@ public class TipoRespuesta {
 
     /**
      * Obtiene el valor de la propiedad infoTerminal.
-     *
-     * @return possible object is
-     * {@link TipoInfoTerminal }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoInfoTerminal }
+     *     
      */
     public TipoInfoTerminal getInfoTerminal() {
         return infoTerminal;
@@ -138,9 +159,11 @@ public class TipoRespuesta {
 
     /**
      * Define el valor de la propiedad infoTerminal.
-     *
-     * @param value allowed object is
-     *              {@link TipoInfoTerminal }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoInfoTerminal }
+     *     
      */
     public void setInfoTerminal(TipoInfoTerminal value) {
         this.infoTerminal = value;

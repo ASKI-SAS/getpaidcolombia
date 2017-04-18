@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoInfoAdicional complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoInfoAdicional">
  *   &lt;complexContent>
@@ -24,11 +25,13 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoInfoAdicional", propOrder = {
-        "tipoInfo",
-        "descripcion"
+    "tipoInfo",
+    "descripcion"
 })
 public class TipoInfoAdicional {
 
@@ -39,9 +42,11 @@ public class TipoInfoAdicional {
 
     /**
      * Obtiene el valor de la propiedad tipoInfo.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getTipoInfo() {
         return tipoInfo;
@@ -49,9 +54,11 @@ public class TipoInfoAdicional {
 
     /**
      * Define el valor de la propiedad tipoInfo.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setTipoInfo(String value) {
         this.tipoInfo = value;
@@ -59,9 +66,11 @@ public class TipoInfoAdicional {
 
     /**
      * Obtiene el valor de la propiedad descripcion.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getDescripcion() {
         return descripcion;
@@ -69,9 +78,11 @@ public class TipoInfoAdicional {
 
     /**
      * Define el valor de la propiedad descripcion.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setDescripcion(String value) {
         this.descripcion = value;
