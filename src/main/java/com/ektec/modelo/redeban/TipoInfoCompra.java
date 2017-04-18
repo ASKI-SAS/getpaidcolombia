@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * 
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoInfoCompra", namespace = "http://www.rbm.com.co/esb/comercio/compra/", propOrder = {
     "montoTotal",

@@ -22,6 +22,7 @@ import javax.xml.namespace.QName;
  * provided in this class.
  * 
  */
+
 @XmlRegistry
 public class ObjectFactory {
 

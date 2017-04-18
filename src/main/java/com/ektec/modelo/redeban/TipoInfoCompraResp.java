@@ -36,6 +36,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  * 
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoInfoCompraResp", namespace = "http://www.rbm.com.co/esb/comercio/compra/", propOrder = {
     "fechaTransaccion",
