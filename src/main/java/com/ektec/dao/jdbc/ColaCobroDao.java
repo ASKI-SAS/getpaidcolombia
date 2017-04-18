@@ -110,7 +110,7 @@ public class ColaCobroDao extends OracleDao implements IColaDao {
         Object resultado;
         try {
             // Conectar con la BD
-            connect();
+           /* connect();
 
             // Ejecutar la consulta
             this.callableStatement = connection.prepareCall("{CALL pkg_ws_quepay.sp_ws_dequeue(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
@@ -147,7 +147,7 @@ public class ColaCobroDao extends OracleDao implements IColaDao {
                     LOGGER.debug("No hay solicitudes en cola...");
                 return null;
             }
-
+*/
             // Obtener los datos del Objeto desde la BD
             resultado = this.getPaidObject();
 
