@@ -1,18 +1,19 @@
 
 package com.ektec.modelo.redeban;
 
+
+import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import java.math.BigDecimal;
 
 
 /**
  * <p>Clase Java para TipoMontoDetallado complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoMontoDetallado">
  *   &lt;complexContent>
@@ -25,11 +26,13 @@ import java.math.BigDecimal;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoMontoDetallado", propOrder = {
-        "tipoMontoDetallado",
-        "monto"
+    "tipoMontoDetallado",
+    "monto"
 })
 public class TipoMontoDetallado {
 
@@ -40,9 +43,11 @@ public class TipoMontoDetallado {
 
     /**
      * Obtiene el valor de la propiedad tipoMontoDetallado.
-     *
-     * @return possible object is
-     * {@link TipoTipoMontoDetallado }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoTipoMontoDetallado }
+     *     
      */
     public TipoTipoMontoDetallado getTipoMontoDetallado() {
         return tipoMontoDetallado;
@@ -50,9 +55,11 @@ public class TipoMontoDetallado {
 
     /**
      * Define el valor de la propiedad tipoMontoDetallado.
-     *
-     * @param value allowed object is
-     *              {@link TipoTipoMontoDetallado }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoTipoMontoDetallado }
+     *     
      */
     public void setTipoMontoDetallado(TipoTipoMontoDetallado value) {
         this.tipoMontoDetallado = value;
@@ -60,9 +67,11 @@ public class TipoMontoDetallado {
 
     /**
      * Obtiene el valor de la propiedad monto.
-     *
-     * @return possible object is
-     * {@link BigDecimal }
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
      */
     public BigDecimal getMonto() {
         return monto;
@@ -70,9 +79,11 @@ public class TipoMontoDetallado {
 
     /**
      * Define el valor de la propiedad monto.
-     *
-     * @param value allowed object is
-     *              {@link BigDecimal }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
      */
     public void setMonto(BigDecimal value) {
         this.monto = value;

@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoIdCuenta complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoIdCuenta">
  *   &lt;complexContent>
@@ -25,12 +26,14 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoIdCuenta", propOrder = {
-        "tipoCuenta",
-        "numCuenta",
-        "codBanco"
+    "tipoCuenta",
+    "numCuenta",
+    "codBanco"
 })
 public class TipoIdCuenta {
 
@@ -43,9 +46,11 @@ public class TipoIdCuenta {
 
     /**
      * Obtiene el valor de la propiedad tipoCuenta.
-     *
-     * @return possible object is
-     * {@link TipoTipoCuenta }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoTipoCuenta }
+     *     
      */
     public TipoTipoCuenta getTipoCuenta() {
         return tipoCuenta;
@@ -53,9 +58,11 @@ public class TipoIdCuenta {
 
     /**
      * Define el valor de la propiedad tipoCuenta.
-     *
-     * @param value allowed object is
-     *              {@link TipoTipoCuenta }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoTipoCuenta }
+     *     
      */
     public void setTipoCuenta(TipoTipoCuenta value) {
         this.tipoCuenta = value;
@@ -63,9 +70,11 @@ public class TipoIdCuenta {
 
     /**
      * Obtiene el valor de la propiedad numCuenta.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getNumCuenta() {
         return numCuenta;
@@ -73,9 +82,11 @@ public class TipoIdCuenta {
 
     /**
      * Define el valor de la propiedad numCuenta.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setNumCuenta(String value) {
         this.numCuenta = value;
@@ -83,9 +94,11 @@ public class TipoIdCuenta {
 
     /**
      * Obtiene el valor de la propiedad codBanco.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getCodBanco() {
         return codBanco;
@@ -93,9 +106,11 @@ public class TipoIdCuenta {
 
     /**
      * Define el valor de la propiedad codBanco.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setCodBanco(String value) {
         this.codBanco = value;

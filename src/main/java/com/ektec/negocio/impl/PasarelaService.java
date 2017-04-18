@@ -49,6 +49,7 @@ public class PasarelaService implements IPasarelaService {
             // Desencolar un cobro
             Object obj = this.colaCobroDao.desencolar();
             if (obj != null) {
+
                 // Envío a cobrar
                 getPaidRequestOd = (TipoSolicitudCompra) obj;
                 respuesta = this.consumirCobro(getPaidRequestOd);

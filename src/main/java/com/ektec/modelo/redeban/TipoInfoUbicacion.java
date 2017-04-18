@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoInfoUbicacion complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoInfoUbicacion">
  *   &lt;complexContent>
@@ -25,12 +26,14 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoInfoUbicacion", propOrder = {
-        "ciudad",
-        "departamento",
-        "pais"
+    "ciudad",
+    "departamento",
+    "pais"
 })
 public class TipoInfoUbicacion {
 
@@ -43,9 +46,11 @@ public class TipoInfoUbicacion {
 
     /**
      * Obtiene el valor de la propiedad ciudad.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getCiudad() {
         return ciudad;
@@ -53,9 +58,11 @@ public class TipoInfoUbicacion {
 
     /**
      * Define el valor de la propiedad ciudad.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setCiudad(String value) {
         this.ciudad = value;
@@ -63,9 +70,11 @@ public class TipoInfoUbicacion {
 
     /**
      * Obtiene el valor de la propiedad departamento.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getDepartamento() {
         return departamento;
@@ -73,9 +82,11 @@ public class TipoInfoUbicacion {
 
     /**
      * Define el valor de la propiedad departamento.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setDepartamento(String value) {
         this.departamento = value;
@@ -83,9 +94,11 @@ public class TipoInfoUbicacion {
 
     /**
      * Obtiene el valor de la propiedad pais.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getPais() {
         return pais;
@@ -93,9 +106,11 @@ public class TipoInfoUbicacion {
 
     /**
      * Define el valor de la propiedad pais.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setPais(String value) {
         this.pais = value;

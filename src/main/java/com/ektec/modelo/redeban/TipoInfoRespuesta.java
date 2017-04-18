@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoInfoRespuesta complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoInfoRespuesta">
  *   &lt;complexContent>
@@ -25,12 +26,14 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoInfoRespuesta", propOrder = {
-        "codRespuesta",
-        "descRespuesta",
-        "estado"
+    "codRespuesta",
+    "descRespuesta",
+    "estado"
 })
 public class TipoInfoRespuesta {
 
@@ -43,9 +46,11 @@ public class TipoInfoRespuesta {
 
     /**
      * Obtiene el valor de la propiedad codRespuesta.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getCodRespuesta() {
         return codRespuesta;
@@ -53,9 +58,11 @@ public class TipoInfoRespuesta {
 
     /**
      * Define el valor de la propiedad codRespuesta.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setCodRespuesta(String value) {
         this.codRespuesta = value;
@@ -63,9 +70,11 @@ public class TipoInfoRespuesta {
 
     /**
      * Obtiene el valor de la propiedad descRespuesta.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getDescRespuesta() {
         return descRespuesta;
@@ -73,9 +82,11 @@ public class TipoInfoRespuesta {
 
     /**
      * Define el valor de la propiedad descRespuesta.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setDescRespuesta(String value) {
         this.descRespuesta = value;
@@ -83,9 +94,11 @@ public class TipoInfoRespuesta {
 
     /**
      * Obtiene el valor de la propiedad estado.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getEstado() {
         return estado;
@@ -93,9 +106,11 @@ public class TipoInfoRespuesta {
 
     /**
      * Define el valor de la propiedad estado.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setEstado(String value) {
         this.estado = value;

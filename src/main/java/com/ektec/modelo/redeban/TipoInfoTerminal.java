@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoInfoTerminal complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoInfoTerminal">
  *   &lt;complexContent>
@@ -24,11 +25,13 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoInfoTerminal", namespace = "http://www.rbm.com.co/esb/comercio/", propOrder = {
-        "nombreAdquiriente",
-        "infoUbicacion"
+    "nombreAdquiriente",
+    "infoUbicacion"
 })
 public class TipoInfoTerminal {
 
@@ -39,9 +42,11 @@ public class TipoInfoTerminal {
 
     /**
      * Obtiene el valor de la propiedad nombreAdquiriente.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getNombreAdquiriente() {
         return nombreAdquiriente;
@@ -49,9 +54,11 @@ public class TipoInfoTerminal {
 
     /**
      * Define el valor de la propiedad nombreAdquiriente.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setNombreAdquiriente(String value) {
         this.nombreAdquiriente = value;
@@ -59,9 +66,11 @@ public class TipoInfoTerminal {
 
     /**
      * Obtiene el valor de la propiedad infoUbicacion.
-     *
-     * @return possible object is
-     * {@link TipoInfoUbicacion }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoInfoUbicacion }
+     *     
      */
     public TipoInfoUbicacion getInfoUbicacion() {
         return infoUbicacion;
@@ -69,9 +78,11 @@ public class TipoInfoTerminal {
 
     /**
      * Define el valor de la propiedad infoUbicacion.
-     *
-     * @param value allowed object is
-     *              {@link TipoInfoUbicacion }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoInfoUbicacion }
+     *     
      */
     public void setInfoUbicacion(TipoInfoUbicacion value) {
         this.infoUbicacion = value;

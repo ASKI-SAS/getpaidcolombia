@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
@@ -8,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoTipoBolsillo.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * <p>
  * <pre>
@@ -31,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
+ * 
  */
 @XmlType(name = "TipoTipoBolsillo")
 @XmlEnum
@@ -75,7 +77,7 @@ public enum TipoTipoBolsillo {
     }
 
     public static TipoTipoBolsillo fromValue(String v) {
-        for (TipoTipoBolsillo c : TipoTipoBolsillo.values()) {
+        for (TipoTipoBolsillo c: TipoTipoBolsillo.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

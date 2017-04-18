@@ -1,18 +1,19 @@
 
 package com.ektec.modelo.redeban;
 
+
+import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import java.math.BigDecimal;
 
 
 /**
  * <p>Clase Java para TipoInfoImpuestos complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoInfoImpuestos">
  *   &lt;complexContent>
@@ -26,12 +27,14 @@ import java.math.BigDecimal;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoInfoImpuestos", propOrder = {
-        "tipoImpuesto",
-        "monto",
-        "baseImpuesto"
+    "tipoImpuesto",
+    "monto",
+    "baseImpuesto"
 })
 public class TipoInfoImpuestos {
 
@@ -43,9 +46,11 @@ public class TipoInfoImpuestos {
 
     /**
      * Obtiene el valor de la propiedad tipoImpuesto.
-     *
-     * @return possible object is
-     * {@link TipoTipoImpuesto }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoTipoImpuesto }
+     *     
      */
     public TipoTipoImpuesto getTipoImpuesto() {
         return tipoImpuesto;
@@ -53,9 +58,11 @@ public class TipoInfoImpuestos {
 
     /**
      * Define el valor de la propiedad tipoImpuesto.
-     *
-     * @param value allowed object is
-     *              {@link TipoTipoImpuesto }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoTipoImpuesto }
+     *     
      */
     public void setTipoImpuesto(TipoTipoImpuesto value) {
         this.tipoImpuesto = value;
@@ -63,9 +70,11 @@ public class TipoInfoImpuestos {
 
     /**
      * Obtiene el valor de la propiedad monto.
-     *
-     * @return possible object is
-     * {@link BigDecimal }
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
      */
     public BigDecimal getMonto() {
         return monto;
@@ -73,9 +82,11 @@ public class TipoInfoImpuestos {
 
     /**
      * Define el valor de la propiedad monto.
-     *
-     * @param value allowed object is
-     *              {@link BigDecimal }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
      */
     public void setMonto(BigDecimal value) {
         this.monto = value;
@@ -83,9 +94,11 @@ public class TipoInfoImpuestos {
 
     /**
      * Obtiene el valor de la propiedad baseImpuesto.
-     *
-     * @return possible object is
-     * {@link BigDecimal }
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
      */
     public BigDecimal getBaseImpuesto() {
         return baseImpuesto;
@@ -93,9 +106,11 @@ public class TipoInfoImpuestos {
 
     /**
      * Define el valor de la propiedad baseImpuesto.
-     *
-     * @param value allowed object is
-     *              {@link BigDecimal }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
      */
     public void setBaseImpuesto(BigDecimal value) {
         this.baseImpuesto = value;

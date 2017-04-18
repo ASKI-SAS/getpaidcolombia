@@ -1,15 +1,20 @@
 
 package com.ektec.modelo.redeban;
 
-import javax.xml.bind.annotation.*;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Clase Java para TipoIdTarjetaCredito complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoIdTarjetaCredito">
  *   &lt;complexContent>
@@ -24,13 +29,15 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoIdTarjetaCredito", propOrder = {
-        "franquicia",
-        "numTarjeta",
-        "fechaExpiracion",
-        "codVerificacion"
+    "franquicia",
+    "numTarjeta",
+    "fechaExpiracion",
+    "codVerificacion"
 })
 public class TipoIdTarjetaCredito {
 
@@ -44,9 +51,11 @@ public class TipoIdTarjetaCredito {
 
     /**
      * Obtiene el valor de la propiedad franquicia.
-     *
-     * @return possible object is
-     * {@link TipoFranquicia }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoFranquicia }
+     *     
      */
     public TipoFranquicia getFranquicia() {
         return franquicia;
@@ -54,9 +63,11 @@ public class TipoIdTarjetaCredito {
 
     /**
      * Define el valor de la propiedad franquicia.
-     *
-     * @param value allowed object is
-     *              {@link TipoFranquicia }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoFranquicia }
+     *     
      */
     public void setFranquicia(TipoFranquicia value) {
         this.franquicia = value;
@@ -64,9 +75,11 @@ public class TipoIdTarjetaCredito {
 
     /**
      * Obtiene el valor de la propiedad numTarjeta.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getNumTarjeta() {
         return numTarjeta;
@@ -74,9 +87,11 @@ public class TipoIdTarjetaCredito {
 
     /**
      * Define el valor de la propiedad numTarjeta.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setNumTarjeta(String value) {
         this.numTarjeta = value;
@@ -84,9 +99,11 @@ public class TipoIdTarjetaCredito {
 
     /**
      * Obtiene el valor de la propiedad fechaExpiracion.
-     *
-     * @return possible object is
-     * {@link XMLGregorianCalendar }
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
      */
     public XMLGregorianCalendar getFechaExpiracion() {
         return fechaExpiracion;
@@ -94,9 +111,11 @@ public class TipoIdTarjetaCredito {
 
     /**
      * Define el valor de la propiedad fechaExpiracion.
-     *
-     * @param value allowed object is
-     *              {@link XMLGregorianCalendar }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
      */
     public void setFechaExpiracion(XMLGregorianCalendar value) {
         this.fechaExpiracion = value;
@@ -104,9 +123,11 @@ public class TipoIdTarjetaCredito {
 
     /**
      * Obtiene el valor de la propiedad codVerificacion.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getCodVerificacion() {
         return codVerificacion;
@@ -114,9 +135,11 @@ public class TipoIdTarjetaCredito {
 
     /**
      * Define el valor de la propiedad codVerificacion.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setCodVerificacion(String value) {
         this.codVerificacion = value;

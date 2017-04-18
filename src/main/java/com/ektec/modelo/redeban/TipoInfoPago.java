@@ -1,18 +1,19 @@
 
 package com.ektec.modelo.redeban;
 
+
+import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import java.math.BigDecimal;
 
 
 /**
  * <p>Clase Java para TipoInfoPago complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoInfoPago">
  *   &lt;complexContent>
@@ -28,14 +29,16 @@ import java.math.BigDecimal;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoInfoPago", propOrder = {
-        "fiidEntidadAdquiriente",
-        "numAutorizacion",
-        "codConvenioRecaudo",
-        "numReferenciaPago",
-        "monto"
+    "fiidEntidadAdquiriente",
+    "numAutorizacion",
+    "codConvenioRecaudo",
+    "numReferenciaPago",
+    "monto"
 })
 public class TipoInfoPago {
 
@@ -52,9 +55,11 @@ public class TipoInfoPago {
 
     /**
      * Obtiene el valor de la propiedad fiidEntidadAdquiriente.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getFIIDEntidadAdquiriente() {
         return fiidEntidadAdquiriente;
@@ -62,9 +67,11 @@ public class TipoInfoPago {
 
     /**
      * Define el valor de la propiedad fiidEntidadAdquiriente.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setFIIDEntidadAdquiriente(String value) {
         this.fiidEntidadAdquiriente = value;
@@ -72,9 +79,11 @@ public class TipoInfoPago {
 
     /**
      * Obtiene el valor de la propiedad numAutorizacion.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getNumAutorizacion() {
         return numAutorizacion;
@@ -82,9 +91,11 @@ public class TipoInfoPago {
 
     /**
      * Define el valor de la propiedad numAutorizacion.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setNumAutorizacion(String value) {
         this.numAutorizacion = value;
@@ -92,9 +103,11 @@ public class TipoInfoPago {
 
     /**
      * Obtiene el valor de la propiedad codConvenioRecaudo.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getCodConvenioRecaudo() {
         return codConvenioRecaudo;
@@ -102,9 +115,11 @@ public class TipoInfoPago {
 
     /**
      * Define el valor de la propiedad codConvenioRecaudo.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setCodConvenioRecaudo(String value) {
         this.codConvenioRecaudo = value;
@@ -112,9 +127,11 @@ public class TipoInfoPago {
 
     /**
      * Obtiene el valor de la propiedad numReferenciaPago.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getNumReferenciaPago() {
         return numReferenciaPago;
@@ -122,9 +139,11 @@ public class TipoInfoPago {
 
     /**
      * Define el valor de la propiedad numReferenciaPago.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setNumReferenciaPago(String value) {
         this.numReferenciaPago = value;
@@ -132,9 +151,11 @@ public class TipoInfoPago {
 
     /**
      * Obtiene el valor de la propiedad monto.
-     *
-     * @return possible object is
-     * {@link BigDecimal }
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
      */
     public BigDecimal getMonto() {
         return monto;
@@ -142,9 +163,11 @@ public class TipoInfoPago {
 
     /**
      * Define el valor de la propiedad monto.
-     *
-     * @param value allowed object is
-     *              {@link BigDecimal }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
      */
     public void setMonto(BigDecimal value) {
         this.monto = value;

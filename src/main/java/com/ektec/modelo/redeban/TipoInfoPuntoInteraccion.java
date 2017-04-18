@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoInfoPuntoInteraccion complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoInfoPuntoInteraccion">
  *   &lt;complexContent>
@@ -28,15 +29,17 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoInfoPuntoInteraccion", namespace = "http://www.rbm.com.co/esb/comercio/", propOrder = {
-        "tipoTerminal",
-        "idTerminal",
-        "idAdquiriente",
-        "idTransaccionTerminal",
-        "modoCapturaPAN",
-        "capacidadPIN"
+    "tipoTerminal",
+    "idTerminal",
+    "idAdquiriente",
+    "idTransaccionTerminal",
+    "modoCapturaPAN",
+    "capacidadPIN"
 })
 public class TipoInfoPuntoInteraccion {
 
@@ -54,9 +57,11 @@ public class TipoInfoPuntoInteraccion {
 
     /**
      * Obtiene el valor de la propiedad tipoTerminal.
-     *
-     * @return possible object is
-     * {@link TipoTipoTerminal }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoTipoTerminal }
+     *     
      */
     public TipoTipoTerminal getTipoTerminal() {
         return tipoTerminal;
@@ -64,9 +69,11 @@ public class TipoInfoPuntoInteraccion {
 
     /**
      * Define el valor de la propiedad tipoTerminal.
-     *
-     * @param value allowed object is
-     *              {@link TipoTipoTerminal }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoTipoTerminal }
+     *     
      */
     public void setTipoTerminal(TipoTipoTerminal value) {
         this.tipoTerminal = value;
@@ -74,9 +81,11 @@ public class TipoInfoPuntoInteraccion {
 
     /**
      * Obtiene el valor de la propiedad idTerminal.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getIdTerminal() {
         return idTerminal;
@@ -84,9 +93,11 @@ public class TipoInfoPuntoInteraccion {
 
     /**
      * Define el valor de la propiedad idTerminal.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setIdTerminal(String value) {
         this.idTerminal = value;
@@ -94,9 +105,11 @@ public class TipoInfoPuntoInteraccion {
 
     /**
      * Obtiene el valor de la propiedad idAdquiriente.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getIdAdquiriente() {
         return idAdquiriente;
@@ -104,9 +117,11 @@ public class TipoInfoPuntoInteraccion {
 
     /**
      * Define el valor de la propiedad idAdquiriente.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setIdAdquiriente(String value) {
         this.idAdquiriente = value;
@@ -114,6 +129,7 @@ public class TipoInfoPuntoInteraccion {
 
     /**
      * Obtiene el valor de la propiedad idTransaccionTerminal.
+     * 
      */
     public long getIdTransaccionTerminal() {
         return idTransaccionTerminal;
@@ -121,6 +137,7 @@ public class TipoInfoPuntoInteraccion {
 
     /**
      * Define el valor de la propiedad idTransaccionTerminal.
+     * 
      */
     public void setIdTransaccionTerminal(long value) {
         this.idTransaccionTerminal = value;
@@ -128,9 +145,11 @@ public class TipoInfoPuntoInteraccion {
 
     /**
      * Obtiene el valor de la propiedad modoCapturaPAN.
-     *
-     * @return possible object is
-     * {@link TipoModoCapturaPAN }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoModoCapturaPAN }
+     *     
      */
     public TipoModoCapturaPAN getModoCapturaPAN() {
         return modoCapturaPAN;
@@ -138,9 +157,11 @@ public class TipoInfoPuntoInteraccion {
 
     /**
      * Define el valor de la propiedad modoCapturaPAN.
-     *
-     * @param value allowed object is
-     *              {@link TipoModoCapturaPAN }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoModoCapturaPAN }
+     *     
      */
     public void setModoCapturaPAN(TipoModoCapturaPAN value) {
         this.modoCapturaPAN = value;
@@ -148,9 +169,11 @@ public class TipoInfoPuntoInteraccion {
 
     /**
      * Obtiene el valor de la propiedad capacidadPIN.
-     *
-     * @return possible object is
-     * {@link TipoCapacidadPIN }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoCapacidadPIN }
+     *     
      */
     public TipoCapacidadPIN getCapacidadPIN() {
         return capacidadPIN;
@@ -158,9 +181,11 @@ public class TipoInfoPuntoInteraccion {
 
     /**
      * Define el valor de la propiedad capacidadPIN.
-     *
-     * @param value allowed object is
-     *              {@link TipoCapacidadPIN }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoCapacidadPIN }
+     *     
      */
     public void setCapacidadPIN(TipoCapacidadPIN value) {
         this.capacidadPIN = value;

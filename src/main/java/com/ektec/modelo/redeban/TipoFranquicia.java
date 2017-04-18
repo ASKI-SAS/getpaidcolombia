@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
@@ -8,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoFranquicia.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * <p>
  * <pre>
@@ -26,6 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
+ * 
  */
 @XmlType(name = "TipoFranquicia")
 @XmlEnum
@@ -58,7 +60,7 @@ public enum TipoFranquicia {
     }
 
     public static TipoFranquicia fromValue(String v) {
-        for (TipoFranquicia c : TipoFranquicia.values()) {
+        for (TipoFranquicia c: TipoFranquicia.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

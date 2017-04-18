@@ -1,6 +1,7 @@
 
 package com.ektec.modelo.redeban;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Clase Java para TipoCabeceraSolicitud complex type.
- * <p>
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="TipoCabeceraSolicitud">
  *   &lt;complexContent>
@@ -23,10 +24,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TipoCabeceraSolicitud", namespace = "http://www.rbm.com.co/esb/comercio/redeban/", propOrder = {
-        "infoPuntoInteraccion"
+@XmlType(name = "TipoCabeceraSolicitud", namespace = "http://www.rbm.com.co/esb/comercio/compra/", propOrder = {
+    "infoPuntoInteraccion"
 })
 public class TipoCabeceraSolicitud {
 
@@ -35,9 +38,11 @@ public class TipoCabeceraSolicitud {
 
     /**
      * Obtiene el valor de la propiedad infoPuntoInteraccion.
-     *
-     * @return possible object is
-     * {@link TipoInfoPuntoInteraccion }
+     * 
+     * @return
+     *     possible object is
+     *     {@link TipoInfoPuntoInteraccion }
+     *     
      */
     public TipoInfoPuntoInteraccion getInfoPuntoInteraccion() {
         return infoPuntoInteraccion;
@@ -45,9 +50,11 @@ public class TipoCabeceraSolicitud {
 
     /**
      * Define el valor de la propiedad infoPuntoInteraccion.
-     *
-     * @param value allowed object is
-     *              {@link TipoInfoPuntoInteraccion }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoInfoPuntoInteraccion }
+     *     
      */
     public void setInfoPuntoInteraccion(TipoInfoPuntoInteraccion value) {
         this.infoPuntoInteraccion = value;
