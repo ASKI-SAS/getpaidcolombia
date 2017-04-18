@@ -21,7 +21,7 @@ public class CompraElectronicaHTTPService
 
     private final static URL COMPRAELECTRONICAHTTPSERVICE_WSDL_LOCATION;
     private final static WebServiceException COMPRAELECTRONICAHTTPSERVICE_EXCEPTION;
-    private final static QName COMPRAELECTRONICAHTTPSERVICE_QNAME = new QName("servicio.getPaid.url", "CompraElectronica_HTTP_Service");
+    private final static QName COMPRAELECTRONICAHTTPSERVICE_QNAME = new QName(Utilidades.getPropiedadConfig("servicio.getPaid.url"), "CompraElectronica_HTTP_Service");
     private final static QName COMPRAELECTRONICAPORT_QNAME = new QName(Utilidades.getPropiedadConfig("servicio.getPaid.url"), "CompraElectronica_HTTP_Port");
 
     static {
